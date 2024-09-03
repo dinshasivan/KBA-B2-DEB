@@ -1,0 +1,53 @@
+body{
+    background-color: azure;
+}
+.container{
+    width: 30%;
+    height: 100;
+    background-color: antiquewhite;
+    align-items: center;
+    margin-left: 30pc;
+    margin-top: 50px;
+    border-radius: 5px;
+    display: flexbox;
+}
+h1{
+    text-align: center;
+    color: blueviolet;
+}
+.container form{
+    padding: 100px;
+}
+.container label{
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: inline-block; /* Added spacing below label */
+
+}
+input[type="email"]{
+    width: 20pc;
+    height: 30px;
+    display:block;
+   
+}
+input[type="password"]{
+    width: 20pc;
+    height: 30px;
+    display:block;
+}
+input[type="button"]{
+    width: 70px;
+    height: 40px;
+    margin-left: 150px;
+    background-color: blueviolet;
+    margin-bottom: 20px;
+    display: inline-block;
+
+    
+}
+.container a{
+    margin-bottom: 20px;
+    display: inline-block;
+
+
+}
