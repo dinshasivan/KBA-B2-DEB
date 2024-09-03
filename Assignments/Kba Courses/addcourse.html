@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="html">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+        <title>Signup</title>
+    </head>
+    <link rel="icon" href="Logo1.png">
+
+    <body bgcolor="lightgrey" style="color:rgb(100, 178, 230);font-family:verdana">
+       
+        <table  border="0" width="500" height ="100" align ="center" cellspacing="4" cellpading="7"  bgcolor="#7b9dbb"><br><br><br>
+        <tr>
+        <td >
+        <center>
+        <p style="width:50;height:30;background-color:#7b9dbb;border:0;color:rgb(184, 8, 96);font-family:verdana" ><big><big><b>UPDATE COURSE</b</big></big></p>
+        </center>
+        </td>
+        </tr>
+        <tr align="center">
+            <td colspan="3">
+                <form action="courses.html" method="post">
+                    <label for="courseName" style="color: #555; display: block; text-align: left; margin-bottom: 6px;">Course Name</label>
+                    <input type="text" name="courseName" id="courseName" required style="width: 90%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+        
+                    <label for="courseType" style="color: #555; display: block; text-align: left; margin-bottom: 8px;">Course Type</label>
+                    <select name="courseType" id="courseType" required style="width: 92%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="online">Online</option>
+                        <option value="offline">Offline</option>
+                        <option value="hybrid">Hybrid</option>
+                    </select>
+        
+                    <label for="courseDescription" style="color: #555; display: block; text-align: left; margin-bottom: 8px;">Course Description</label>
+                    <textarea name="courseDescription" id="courseDescription" required style="width: 90%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;" rows="4"></textarea>
+        
+                    <label for="coursePrice" style="color: #555; display: block; text-align: left; margin-bottom: 8px;">Course Price</label>
+                    <select name="coursePrice" id="coursePrice" required style="width: 92%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                        <option value="free">Free</option>
+                        <option value="100">10000</option>
+                        <option value="200">20000</option>
+                        <option value="500">15000</option>
+                        <option value="1000">100000</option>
+                    </select>
+        
+                    <button type="submit" style="width: 50%; padding: 12px; background-color: rgb(184, 8, 96); color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">Update Course</button>
+                </form>
+            </td>
+        </tr>
+        
+        
+        </table>
+
+        
+        
+    </body>
+
+
+</html>
