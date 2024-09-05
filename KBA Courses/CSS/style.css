@@ -1,14 +1,16 @@
 body{
     background-color: azure;
 }
+/* Login*/
+
 .container{
     width: 30%;
-    height: 100;
-    background-color: antiquewhite;
+    height: fit-content;
+    background-color: rgb(247, 234, 218);
     align-items: center;
     margin-left: 30pc;
     margin-top: 50px;
-    border-radius: 5px;
+    border-radius: 8px;
     display: flexbox;
 }
 h1{
@@ -16,7 +18,7 @@ h1{
     color: blueviolet;
 }
 .container form{
-    padding: 100px;
+    padding: 10px;
 }
 .container label{
     font-size: 20px;
@@ -24,21 +26,18 @@ h1{
     display: inline-block; /* Added spacing below label */
 
 }
-input[type="email"]{
-    width: 20pc;
-    height: 30px;
-    display:block;
-   
-}
-input[type="password"]{
-    width: 20pc;
-    height: 30px;
-    display:block;
-}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+            width: 20pc;
+            height: 40px;
+            display: block;
+            margin-bottom: 20px;
+ }
 input[type="button"]{
     width: 70px;
     height: 40px;
-    margin-left: 150px;
+    margin-left: 130px;
     background-color: blueviolet;
     margin-bottom: 20px;
     display: inline-block;
@@ -50,4 +49,56 @@ input[type="button"]{
     display: inline-block;
 
 
+}
+/* Login end*/
+
+/* Sign up*/
+select{
+    width: 70%;
+    height: 40px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Sign up end*/
+/*Add Coures*/
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.course-form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    color: #555;
+}
+
+.input-field, .textarea-field, select {
+    width: 60%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.textarea-field {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    display: block;
+    width: 500px;
+    height: 20px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }

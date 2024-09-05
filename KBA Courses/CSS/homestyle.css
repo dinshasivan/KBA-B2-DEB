@@ -1,0 +1,256 @@
+body{
+    background-color: aliceblue;
+    margin: 0;
+    padding: 0;
+}
+.bc{
+   position:sticky;
+   top: 0;
+   height: 55px;
+   width: 100%;
+   margin: 0;
+   box-shadow: 0 4px 8px rgba(65, 61, 61, 0.2);
+   
+}
+.di{
+
+float: left;
+}
+.dv{
+
+display: flex;
+justify-content: flex-end;
+}
+.nav{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    margin-left: auto;
+}
+.nav li {
+    margin-right:50px;
+    margin-top: 10px;
+    display: block;   
+    
+}
+.nav li a{
+    text-decoration: none;
+    color: #4f9ed3;
+}
+.nav li a:hover{
+    color: #000;
+}
+img{
+    width: 50px;
+    height: 50px;
+}
+.head{
+    padding-left:10pc ;
+   
+    /* background-color: bisque; */
+    margin-top: 10px;
+    height: 15pc;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding-top: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: x-large;
+
+    
+}
+
+p{
+    padding-left: 40pc;
+} 
+.topic{
+    padding-left:40pc ;
+    background-color: bisque;
+    margin-top: 50px;
+    height: 15pc;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding-top: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: x-large;
+   
+}
+.para{
+    padding-left: 15px;
+    font-size: 20px;
+}
+.course-container {
+    display: flex;
+    
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.course-card {
+    margin-left: 10px;
+    background-color: rgb(238, 206, 193);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.course-card .cd {
+    font-size: 22px;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    color: #333;
+}
+
+.course-card .im {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+.course-card .btn {
+    display: block;
+    margin-top: 50px;
+    margin-left: 80px;
+    padding: 10px 20px;
+    background-color: #9bc3ee;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.course-card .more-link {
+    display: inline-block;
+    margin-top: 10px;
+    float:left; 
+
+}
+.bttn{
+    padding: 12px 30px;
+    margin-left: 50pc;
+    background-color: #3df1c4;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 20pc;
+}
+/* Contact Us */
+.contact {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.contact p:nth-of-type(1) {
+    padding-left: 5px;
+    font-size: 15px;
+}
+.contact p:nth-of-type(2) {
+    font-size: 20px;
+    color: #555;
+    padding-left: 20px;
+}
+
+.contact h1 {
+    font-size: 36px;
+    color: #333;
+    margin-top: 10px;
+}
+.contact-container{
+   display: flex;
+    width: 100%;
+    padding:10pc 35pc;
+}
+.eml{
+    padding-left: 20pc; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 250px;
+    text-align: center;  
+    display: flex;
+    flex-direction: column;  /*text appear below the icon */
+    align-items: center;
+    
+}
+.eml p{
+    padding-left: 10px;
+    font-style: bold;
+    
+}
+.eml i{
+    padding-top: 10px;
+    font-size: 30px;
+    color: #fff;
+    background-color: #d2e0f0; 
+    width: 60px;
+    height: 50px;
+    line-height: 60px;
+    border-radius: 50%;  /*  background circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.eml p:nth-of-type(1) {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.eml p:nth-of-type(2) {
+    color: #777;
+}
+
+.eml p:nth-of-type(3) {
+    color: #007BFF;
+}
+/* Contact Us end */
+/* courses */
+.card{
+    margin-left: 10px;
+    background-color: rgb(229, 241, 252);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.card p:nth-of-type(1){
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    color: #cd34db;
+}
+.card p:nth-of-type(2){
+    font-size: 10px;
+    margin-bottom: 10px;
+    padding-left: 30px;
+   
+    
+    
+}
+.card img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+.card button{
+    display: block;
+    margin-top: 50px;
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #ee7cfd;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+   
+}
+.card a{
+    display: inline-block;
+    margin-top: 10px;
+    float:left;
+}
+/* courses end */

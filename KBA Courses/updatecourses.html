@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update course</title>
+    <link rel="stylesheet" href="CSS/homestyle.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <div class="bc">
+        <div class="di">
+            <img src="images/Logo1.png" alt="">
+        </div>
+        <div class="dv">
+            <nav>
+                <ul class="nav">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                    <li><a href="Addcourses.html">Add Course</a></li>
+                    <li><a href="home.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+</div>
+<div class="container">
+    <form class="course-form">
+        <h1>Update Course</h1>
+
+        <label for="course-name">Course Name</label>
+        <input type="text" id="course-name" class="input-field" placeholder="eg.Certified Blockchain Associate"><br>
+        
+        <label for="course-type">Course Type:</label>
+        <select id="course-type" class="input-field">
+            <option value="Hybrid">Hybrid</option>
+            <option value="Online">Online</option>
+            <option value="Offline">Offline</option>
+        </select><br>
+
+        <label for="description">Description</label><br>
+        <textarea id="description" class="textarea-field" placeholder="small description on the course"></textarea><br>
+
+        <label for="course-price">Price:</label>
+        <select id="course-type" class="input-field">
+            <option value="15000">15000</option>
+            <option value="20000">20000</option>
+            <option value="25000">25000</option>
+        </select><br>
+
+        <input type="button" value="Update Course" class="submit-btn "><br>
+    </form>
+</div>
+</body>
+</html>
