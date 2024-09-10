@@ -254,3 +254,74 @@ p{
     float:left;
 }
 /* courses end */
+/* Learnmore start */
+.learn-more{
+    width: 30%;
+    height: 60%;
+    background-color: #9bc3ee;
+    margin-left: 20px;
+}
+.learn-more img{
+    padding-top: 10px;
+}
+
+.cart{
+    padding:20%;
+    display: flex;
+    color: #ad0fb3; 
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.cart h2{
+    margin: 0;
+    padding: 0 10px;
+    font-size: 18px;
+}
+.cart .add{
+    width: 100px;
+    height: 30px;
+    border-radius:10px;
+    background-color: #ad0fb3;
+    color: white;
+    justify-content: space-between;
+    
+}
+.cart h2{
+    padding-left: 50px;
+    float: left;
+
+}
+.learn-more h2:nth-last-of-type(3){
+    color: #ad0fb3;
+    padding-left: 10px;
+}
+.learn-more p{
+    padding-left: 10px;
+}
+.learn-more h2:nth-last-of-type(2){
+    color: #ad0fb3;
+    padding-left: 10px;
+}
+.learn-more h2:nth-last-of-type(1){
+    color: #ad0fb3;
+    padding-left: 10px;
+}
+.learn-more .edit{
+    width: 100px;
+    height: 30px;
+    background-color: #5d5beb;
+    border-radius: 30px;
+   
+}
+.learn-more .remove{
+    width: 120px;
+    height: 30px;
+    background-color: #f0251e;
+    margin-top: 30px;
+    margin-right: 10pc;
+    margin-bottom: 30px;
+    justify-content: flex-end;
+    border-radius: 30px;
+}
+/* learnmore end */

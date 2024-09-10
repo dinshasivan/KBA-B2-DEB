@@ -1,0 +1,32 @@
+body{
+    margin: 0;
+    padding: 0;
+    
+}
+.navigation{
+    margin: 0;
+    position:sticky;
+    height: 55px;
+    width: 100%;
+    box-shadow: 0 0 8px rgba(240, 235, 235, 0.2);
+}
+.nav-menu{
+    list-style-type: none;
+    display: flex;
+    padding-top: 15px;
+    justify-content: flex-end;
+}
+.nav-menu li a{
+    text-decoration: none;
+    padding: 40px;
+    font-size: 20px;
+    color: #a4b7f0;
+    cursor: pointer;
+}
+.d1{
+    width: 600px;
+    height: 600px;
+   
+}
+
+

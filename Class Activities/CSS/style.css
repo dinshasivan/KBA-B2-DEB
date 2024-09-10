@@ -1,6 +1,55 @@
+.nav{
+    list-style-type:none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.nav li{
+    
+    margin-right: 20pc;
+       
+}
+.nav li a{
+    text-decoration: none;
+    
+}
+.nav li a:hover{
+    font-size: large;
+}
+h1{
+    text-align: center;
+    color: aqua;
+}
+img:hover{
+    opacity: .5;
+}
+.txt{
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    color: blue;
+}
 .column{
    width: 32%;
     border-left: 1px solid;
     float: left;
     padding: 5px;
+}
+@media only screen and (max-width:600px) {
+    .column{
+        width: 100%;
+        float :left;
+    }
+    .nav{
+        width: 100%;
+    }
+    .img{
+        width: 100px;
+        height: 100px;
+    }
+    .column p{
+        font-size: 15px;
+    }
+    h1{
+        font-size: 25px;
+    }
 }
