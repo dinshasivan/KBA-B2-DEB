@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Fruitables</title>
+    <link rel="stylesheet" href="Css/style.css">
+        
+</head>
+<body>
+    <header>
+        <img src="images/logo.jpeg" class="logo" alt="Logo" >
+        <nav>
+            <a href="home.html" >Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="addbook.html" class="active">Add Book</a>
+            <a href="viewbook.html">View Book</a>
+        </nav>
+       
+    </header>
+
+    <div class="login-container">
+        <h2>Add Book</h2>
+        <form action="#">
+            <label for="Book-Name" class="labl">Book Title</label>
+            <input type="text"  required>
+            <label for="Author-Name" class="labl">Author Nmane</label>
+            <input type="text"  required>
+            <label for="Book-Type" class="labl">Book Type</label><br>
+            <select class="type">
+                <option value="Novel" class="book-type"> Novel</option>
+                <option value="Non-Fiction" class="book-type">Non-Fiction</option>
+                <option value="Fiction" class="book-type">Fiction</option>
+            </select><br>
+           <label for="Thambnail" class="labl">Thambnail</label><br>
+           <input type="file" class="" ><br>
+           <label for="Issue-Date" class="labl">Date-Of-Issue</label>
+           <input type="date" name="" id="">
+            <button type="submit">Add Book</button>
+        </form>
+        <!-- <div class="signup-link">
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div> -->
+    </div>
+
+</body>
+</html>
