@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <center> <h1>HTML BASIC TAGS</h1></center>
+   <h1>heading tags - H1 to H6</h1>
+   <p>This is a paragraph.</p>
+   <b><i>Bold and Ittalic text</i></b>
+   <strong>Important text</strong>
+   <p>This is <s>struck-through</s> text.</p>
+   <p>This is <del>deleted</del> text.</p>
+   <p>Dinsha <sub>Sivan</sub></p>
+   <p>Dinsha <sup>Sivan</sup></p>
+
+   <em>Emphasized text</em>
+   <h3>Hyper Link</h3>
+   <a href="https://www.google.com">Visit Google</a>
+   <h3>Image</h3>
+   <img src="Dinshas.png" alt="Description of image"><hr>
+   <h2>Unordered List</h2>
+   <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ul>
+<ul type="circle">
+    <li>Item 1</li>
+    <li>Item 2</li></ul>
+
+    <ul type="square">
+        <li>Item 1</li>
+        <li>Item 2</li></ul><hr>
+        <h2>Ordered List</h2>
+<ol>
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ol>
+
+<ol type="A">
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ol><hr>
+<h3>Table</h3>
+
+<table border="1" cellspacing="5" cellpadding="10">
+    <tr>
+        <td rowspan="2">Rowspan 2</td>
+        <td colspan="3">Colspan 3</td>
+    </tr>
+    <tr>
+        <td>Cell 2</td>
+        <td>Cell 3</td>
+    </tr>
+    <tr>
+        <td>Cell 4</td>
+        <td>Cell 5</td>
+        <td>Cell 6</td>
+    </tr>
+</table><hr>
+
+<h2>Form</h2>
+    <form action="/submit" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <p>Select a course:</p>
+        <select name="courses">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">JavaScript</option>
+        </select>
+        
+        <p>Select your hobbies:</p>
+        <input type="checkbox" id="coding" name="hobby" value="coding">
+        <label for="coding">Coding</label><br>
+        
+        <input type="checkbox" id="music" name="hobby" value="music">
+        <label for="music">Music</label><br>
+        
+        <input type="checkbox" id="sports" name="hobby" value="sports">
+        <label for="sports">Sports</label><br>
+        
+        <p>Select your gender:</p>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label><br>
+        
+        <textarea id="comments" name="comments" rows="5" cols="40">
+            Enter your comments here...
+        </textarea>
+        <button type="submit">Send</button>
+    </form><hr>
+
+    <h1>Marquee Examples</h1>
+    
+     <h5>Horizontal Scroll</h5>
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        Horizontal Scrolling Text
+    </marquee>
+
+    <h5>Vertical Scroll</h5>
+   
+    <marquee behavior="scroll" direction="up" height="100" width="200">
+        Vertical Scrolling Text
+    </marquee>
+    
+   <h5> Bouncing Text</h5>
+    <marquee behavior="alternate" direction="left" scrollamount="10">
+        Bouncing Text
+    </marquee>
+    
+   <h5> Sliding Text </h5>
+    <marquee behavior="slide" direction="right">
+        Sliding Text
+    </marquee><hr>
+    <h4>Audio</h4>
+<audio src="videoplayback" controls></audio>
+<h2>Video</h2>
+<video src="videoplayback.mp4" controls></video>
+</body>
+</html>
