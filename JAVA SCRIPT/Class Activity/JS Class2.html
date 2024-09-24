@@ -6,29 +6,241 @@
     <title>Document</title>
 </head>
 <body>
-    <h4>Activities </h4>
+    <h4>Swap two numbers using temborary variable </h4>
+   
     <script>
         //swap two numbers using temporary veriable
         let x,y;
         x=10, y=20;
         z=x;//temp
+        document.write("<br><br> before swap two number <br>")
         document.write("value of x :",x)
         document.write("<br><br>value of y :",y)
-        document.write("<br><br>Sawp numbers <br>", " <br>value of x=",x=y,"<br><br>"," value of y=", y=z)
-
-        //swap two numbers using temporary veriable
+        document.write("<br><br> after swap two number <br>")
+       
+        document.write("<br> value of x=",x=y,"<br><br>"," value of y=", y=z)
+       
+    </script>
+    <h4>Swap two numbers without temborary variable </h4>
+    <script>
+        
         document.write("<br><br> before swap two number <br>")
         a=20;
         b=30;
-       document.write("a=",a,"<br>","b=",b)
+       document.write("value of a=",a,"<br>","value of b=",b)
         document.write("<br><br> after swap two number <br>")
-        document.write("a=",b,"<br>b=",b=a)
+        document.write("value of a=",b,"<br>value of b=",b=a)
 
-        //convert Celsius to fahrenheit
-        //square of a number
-        x=2;
-        square=x*x;
-        document.write("<br>",square)
+        
     </script>
+    <br><br>
+
+    
+
+<h3>Program to convert Celsius to fahrenheit</h3>
+
+<script>
+    {
+        let x = 10;
+
+        document.write(`<br> Degree Celsius : ${x}`);
+
+        let y = (x * 9.0 / 5.0) + 32.0;
+
+        document.write(`<br> Fahrenheit  : ${y}`);
+
+    } 
+</script>
+
+
+<br><br>
+    <h3>Program to find square of a number</h3>
+
+    <script>
+        {
+            let x = 4;
+
+            document.write(`<br> Number :${x}`);
+
+            let y = x * x;
+
+            document.write(`<br> Square : ${y}`);
+        } 
+    </script>
+
+
+    <br><br>
+    <h3>Program to find cube of a number</h3>
+    <script>
+        {
+            let x = 3;
+            document.write(`<br> Number :${x}`);
+
+            let y = x * x;
+
+            document.write(`<br> Cube  : ${y}`);
+        } 
+    </script>
+
+<br><br>
+    <h3>Program to find area of square, circle, rectangle, triangle</h3>
+    <script>
+        {
+            let a = 3;
+            let h = 4;
+            let l = 5;
+            let w = 2;
+            let r = 7;
+            const pi = 3.14;
+
+            document.write(`<br> side of square : ${a}`);
+            let square = a * a;
+            document.write(`<br> Area of square : ${square}`);
+
+            document.write("<br><br>");
+
+            document.write(`<br> radious of circle : ${r}`);
+            let circle = pi * (r * r);
+            document.write(`<br> Area of circle : ${circle}`);
+
+            document.write("<br><br>");
+
+            document.write(`<br> length and width of Reactangle : ${l} , ${w}`);
+            let rectangle = l * w;
+            document.write(`<br> Area of Rectangle : ${rectangle}`);
+
+            document.write("<br><br>");
+
+            document.write(`<br> base and height of Triangle : ${l} , ${h}`);
+            let triangle = (l * h) / 2;
+            document.write(`<br> Area of Rectangle : ${triangle}`);
+        } 
+    </script>
+
+<br><br>
+<h3>Program to find perimeter of rectangle, square, circle, triangle</h3>
+<script>
+    {
+        let a = 5;
+        let h = 3;
+        let l = 2;
+        let w = 4;
+        let r = 6;
+        const pi = 3.14;
+
+        document.write(`<br> side of square : ${a}`);
+        let square = 4 * a;
+        document.write(`<br> Perimeter of square : ${square}`);
+
+        document.write("<br><br>");
+
+        document.write(`<br> radious of circle : ${r}`);
+        let circle = 2 * pi * r;
+        document.write(`<br> Perimeter of circle : ${circle}`);
+
+        document.write("<br><br>");
+
+        document.write(`<br> length and width of Reactangle : ${l} & ${w}`);
+        let rectangle = 2 * (l + w);
+        document.write(`<br> Perimeter of Rectangle : ${rectangle}`);
+
+        document.write("<br><br>");
+
+        document.write(`<br> 3 sides of Triangle : ${l},${w} & ${h}`);
+        let triangle = l + h + w;
+        document.write(`<br> Perimeter of Rectangle : ${triangle}`);
+    } 
+</script>
+
+<br><br>
+<h3>Program to find simple interest & compound interest</h3>
+<script>
+    {
+        let p = 10000;
+        let t = 10;
+        let r = 3;
+
+        document.write("<br> Simple Interest");
+        document.write("<br>");
+
+        document.write(`<br> P = ${p}, T= ${t}, R = ${r}`);
+        let y = (p * t * r) / 100;
+        document.write(`<br> Interest  : ${y}`);
+
+        document.write("<br> <br>Compound ");
+        document.write("<br>");
+
+        document.write(`<br> P =${p}, T = ${t}, R = ${r}`);
+        let A = p * Math.pow((1 + r / 100), t);
+        let CI = A - p;
+        document.write(`<br> Compound interest  : ${CI}`);
+
+    } 
+</script>
+
+<br><br>
+<h3>Program to find largest among two numbers</h3>
+<script>
+    {
+        let t = 10;
+        let r = 3;
+
+        document.write(`<br> input numbers : ${t} & ${r} `)
+
+        if (t > r) {
+            document.write(`<br> ${t} is larger than ${r}`);
+        }
+        else {
+            document.write(`<br> ${r} is larger than ${t}`);
+        }
+
+    } 
+</script>
+
+<br><br>
+<h3>program to find smallest among three numbers</h3>
+<script>
+    {
+        let t = 10;
+        let r = 3;
+        let p = 7;
+
+        document.write(`<br>  numbers : ${t}, ${r} & ${p}`)
+
+        if (t > r && t > p ) {
+            document.write(`<br> ${t} is larger than ${r} & ${p}`);
+        }
+        else if (r > p) {
+            document.write(`<br> ${r} is larger than ${t} & ${p}`);
+        }
+        else {
+            document.write(`<br> ${p} is larger than ${t} & ${r}`);
+        }
+
+    } 
+</script>
+
+<br><br>
+<h3> Program to check the given number is zero,positive and negative </h3>
+<script>
+    {
+        let t = 10;
+        document.write(`<br>  number : ${t}`);
+
+        if (t > 0) {
+            document.write(`<br> ${t} is posaitive number`);
+        }
+        else if (t < 0) {
+            document.write(`<br> ${t} is negative number`);
+        }
+        else {
+            document.write(`<br> ${t} is Zero`);
+        }
+
+    } 
+</script>
+
+
+
 </body>
 </html>
