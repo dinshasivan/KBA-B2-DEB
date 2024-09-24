@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1 >Java Script Activities</h1>
+    <p>Using document.getElementById</p>
     <p id="demo"></p>
     <p id="do"></p>
     <p id="dm"></p>
@@ -27,18 +28,20 @@
         z=(a*d)/d;
         r=e*d+f-c;
 
-        
-        document.write(" 3+2 <br> <br>" ) 
-        document.write(" 5*10 <br><br>")
+        document.write("<br> ")
+        document.write(" 3+2 <br> " ) 
+        document.write(" 5*10 <br>")
         document.write(" (26*3)+4 <br>")
         document.write(" 56/5 <br> <br>")
 
-        //print  patern
+        document.write("<br>Program to print pattern<br>")
+        document.write("<br>")
         document.write("* <br>" )
         document.write(" ** <br>")
         document.write("*** <br> <br>")
 
-        //print  patern
+        document.write("<br>Program to print pattern<br>")
+        document.write("<br>")
         document.write(" &nbsp  &nbsp * <br>" )
         document.write("&nbsp ** <br>")
         document.write("*** <br> <br>")
@@ -47,10 +50,10 @@
         document.write(" 12 <br>")
         document.write("123 <br> <br> <br>")
 
-        document.write("Using document.getElementById <br>")
-        document.getElementById("demo").innerHTML="1"
-        document.getElementById("do").innerHTML="23"
-        document.getElementById("dm").innerHTML="456"
+        // document.write("Using document.getElementById <br>")
+        document.getElementById("demo").innerHTML=(5*6)%4
+        document.getElementById("do").innerHTML=3.5+2.4
+        document.getElementById("dm").innerHTML=104.5/5
 
         
         //using veriables to store values
@@ -62,12 +65,8 @@
         console.log("10%2=",10%2)
         console.log("17%2",17%2)
         console.log("(5*6)%4=",(5*6)%4)
+        console.log(" 4.5*2 =", 4.5*2)
 
-        document.write("Using document.write <br>")
-        document.write("(5*6)%4 = ",(5*6)%4,"<br>")
-        document.write("3.5+2.4 =",3.5+2.4,"<br>")
-        document.write("104.5/5 =",104.5/5,"<br>")
-        document.write(" 4.5*2 =", 4.5*2,"<br>")
     </script>
 </body>
 </html>
