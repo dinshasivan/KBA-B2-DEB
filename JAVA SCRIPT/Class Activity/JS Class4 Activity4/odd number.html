@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>First 20 odd numbers and their sum.</p>
+    <script>
+        let sum=0;
+        for(let i=0; i<20; i++){
+            if(i%2!=0){
+                document.write(i,"\t");
+                sum=sum+i;
+                
+            }
+        }
+        document.write("<br>The sum of numbers:",sum);
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Divide the array into two sub arrays</p>
+    <script>
+        let arr=[20,25,30,35,40,45,50,55];
+
+        let array1=[];
+        let array2=[];
+
+        let mp=Math.floor(arr.length/2);
+
+        for(let i=0; i<mp; i++){
+            array1.push(arr[i])
+        }
+        for(let i=mp; i<arr.length; i++){
+            array2.push(arr[i])
+        }
+        document.write("original array-->\t",arr,"<br><br>");
+        document.write("first sub array-->\t",array1,"<br><br>");
+        document.write("second sub array-->\t",array2,"<br>");
+    </script>
+</body>
+</html>

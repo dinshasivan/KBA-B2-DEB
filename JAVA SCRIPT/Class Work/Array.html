@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let array=[1,2,3,4,5,6];
+        x=array[3];
+        y=array[5];
+        sum=x+y;
+        document.write("The value  stored in 3rd position is:",array[3],"<br>");
+        document.write("The value  stored in 5th position is:",array[5],"<br>");
+        document.write("sum ",sum)
+        document.write("<br>")
+        document.write(array[6]);
+        document.write("<br>")
+        let s=0;
+        document.write("Length of array:",array.length,"<br>")
+        for(let i=0; i<array.length;i++){
+
+            document.write(array[i]);
+        }
+        
+        for(let i=0; i<array.length;i++){
+            s=s+array[i];
+        }
+        document.write("<br>Sum of array values:",s);
+    </script>
+    <br><br>
+    <script>
+        let arr=[1,2,3,4,5];
+        for(let i=0; i<arr.length; i++){
+            arr[i]=arr[i]+2;
+            document.write(arr[i]);
+            
+        }
+    //    document.write()
+        
+    </script>
+</body>
+</html>
