@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Array operations</p>
+    <script>
+        let array=[10,20,30,40,50];
+        array.push(60);
+        document.write("Push Operation // add new element to an array at last position<br>");
+        document.write(array);
+        document.write("<br>")
+
+        document.write("<br>Pop Operation // delete element from an array<br>");
+        array.pop();
+        document.write(array);
+        document.write("<br>")
+
+        document.write("<br> toString() // convert an array into string<br>");
+        strg=array.toString();
+        document.write(strg);
+        document.write("<br>")
+
+        document.write("<br>concat() // concatinate two array<br>");
+        let a=[1,2,3,4];
+        let b=[5,6,7,8];
+        let c=a.concat(b);
+        document.write(c);
+        document.write("<br>")
+
+        document.write("<br>splice(position,delete element,add new elements) // add new element to an array at perticular position<br><br>");
+        document.write(a);
+        a.splice(2,1,5,6);
+        document.write("<br>",a);
+        document.write("<br>");
+
+        document.write("<br>slice(position start, position end) // get an element <br>");
+        d=c.slice(3,6);
+        document.write(d);
+        document.write("<br>");
+
+        document.write("<br>reverse() // reverse an array <br>");  
+        document.write(c);
+        document.write("<br>",x=c.reverse()); 
+        document.write("<br>");
+        
+        document.write("<br>sort() // sort an array in ascending order<br>");  
+        document.write(c);
+        document.write("<br>",y=c.sort()); 
+        document.write("<br>");
+
+        document.write("<br>indexOf(element) // find the position of element <br>");  
+        document.write(c);
+        document.write("<br>",ind=c.indexOf(6));
+        document.write("<br>"); 
+
+        document.write("<br>join()// append a perticular value or character to an array elements<br>");  
+        document.write(c);
+        document.write("<br>",jo=c.join("*")); 
+    </script>
+</body>
+</html>

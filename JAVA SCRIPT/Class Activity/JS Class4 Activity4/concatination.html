@@ -11,10 +11,17 @@
     <script>
         let a=[2,4,6,8];
         let b=[1,3,5,7];
-
-        document.write("First array-->",a,"<br><br>");
-        document.write("Second array-->",b,"<br><br>");
-        document.write("Concatinate two arrays into single array-->",a+b);
+        let c=[];
+        for(let i=0; i<a.length; i++){
+            c[i]=a[i];
+        }
+        for(let i=0; i<b.length; i++){
+            c[c.length]=b[i];
+        }
+        document.write("first array->\t",a);
+        document.write("<br>second array->\t",b);
+        document.write("<br>Concatinated Array->\t",c);
+        
 
     </script>
 </body>

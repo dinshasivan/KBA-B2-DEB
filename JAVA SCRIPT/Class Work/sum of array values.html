@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Sum of array values and store the values </p>
+    <script>
+        let arr1=[2,3,5,7,8];
+        let arr2=[1,4,6,10,9];
+        let arr3=[];
+        let sum=0;
+
+        if(arr1.length===arr2.length){
+            for(let i=0;i<arr1.length;i++){
+                arr3[i]=arr1[i]+arr2[i]
+            }
+        }
+        
+        else {
+            document.write("length is not match")
+        }
+        // document.write(arr3);for(j of arr3){ document.write(j)} to access the element in an array
+        for(j in arr3){ //to access the index of an array
+            document.write("\t",arr3[j]);
+        }
+        for(x of arr3){
+            sum=sum+x;
+            
+        }
+        document.write("<br> the sum of array elements is :",sum);
+
+    </script>
+</body>
+</html>

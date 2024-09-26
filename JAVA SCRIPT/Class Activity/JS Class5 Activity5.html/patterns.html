@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Patterns</p>
+    <script>
+        
+        document.write("Pattern 1<br>")
+        for (let i = 1; i <= 4; i++) {
+            document.write("<br>")
+            let pattern1 = '';
+            for (let j = 1; j <= i; j++) {
+                pattern1 += i;  // Print the same number 'i' times
+            }
+            document.write(pattern1);
+        }   
+   
+        let count = 1;
+        let rows = 4;
+        let pattern2 = "";
+        document.write("<br>Pattern 2<br>");
+        for (let i = 1; i <= rows; i++) {
+            for (let j = 1; j <= i; j++) {
+                document.write(count+'')
+                count+=1;
+            }
+            document.write("<br>")
+        }
+        document.write(pattern2); 
+    
+        let num=3;
+        document.write("<br>Pattern 3<br>");
+        for (let i = num; i > 0; i--) {
+            for (let j = 1; j <= i; j++) {
+                document.write("* ")
+            }
+            document.write("<br>")
+        }
+
+        
+    </script>
+    <script>
+        let x = 2;
+        document.write("<br>pattern 4<br>");
+            for (let i = 1; i <= 3; i++) {
+                for (let j = 1; j <= 3; j++) {
+                    document.write(x, " "),
+                        x = x + 2
+                }
+                document.write("<br>")
+            }
+
+        document.write("<br>pattern 5<br>");
+        let y = 2;
+            for (let i = 3; i > 0; i--) {
+                for (let j = 1; j <= i; j++) {
+                    document.write(y, " ");
+                        y = y + 2
+                }
+                document.write("<br>")
+            }
+    </script>
+    </body>
+</html>
