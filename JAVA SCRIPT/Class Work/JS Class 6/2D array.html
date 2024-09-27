@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>2D array</h2>
+    <script>
+        array=[[]];//2D array declaration in js
+        array=[[1,2,3],[4,5,6],[6,7,8]];
+
+        for(let i=0; i<array.length; i++){
+            document.write("<br>");
+            for(let j=0; j<array.length; j++){
+                document.write(array[i][j],"\t");
+            }
+        }
+    </script>
+    <br><br><br>
+
+    <h4>Insert values using for loop</h4>
+    <script>
+        let arr=[[],[],[]];//to declare in this case just specify number of rows 
+
+        for(let i=0; i<3; i++){
+            for(let j=0; j<3; j++){
+                arr[i][j]=1;
+            }
+            
+        }
+
+        for(let i=0; i<3; i++){
+            document.write("<br>");
+            for(let j=0; j<3; j++){
+                document.write(arr[i][j]);
+            }
+            
+        }
+        
+    </script>
+
+    <br><br>
+    <script>
+        let ar=[[],[],[],[]];
+    
+        for(let i=0; i<3; i++){ 
+            for(let j=0; j<4; j++){
+                ar[i][j]=i+1;
+                
+            }
+        }
+
+        for(let i=0; i<3; i++){
+            document.write("<br>")
+            for(let j=0; j<4; j++){
+                document.write(ar[i][j]);
+            }
+        }
+        document.write("<br>")
+        let a=[[],[],[],[]];
+        let x=2;
+        for(let i=0; i<3; i++){ 
+            for(let j=0; j<4; j++){
+                a[i][j]=x;
+                x+=2;
+                
+            }
+        }
+
+        for(let i=0; i<3; i++){
+            document.write("<br>")
+            for(let j=0; j<4; j++){
+                document.write(a[i][j],"\t");
+            }
+        }
+
+        document.write("<br><br>Matrix Addition<br>");
+        let ar1=[[],[],[],[]];
+        for(let i=0; i<3; i++){
+            for(let j=0; j<4; j++){
+                ar1[i][j]=a[i][j]+ar[i][j];
+            }
+        }
+        for(let i=0; i<3; i++){
+            document.write("<br>")
+            for(let j=0; j<4; j++){
+                document.write("\t &nbsp &nbsp",ar1[i][j]);
+            }
+        }
+        
+        document.write("<br><br>Original matrix<br>");
+        for(let i=0; i<3; i++){
+            document.write("<br>")
+            for(let j=0; j<4; j++){
+                document.write("\t &nbsp &nbsp",ar1[i][j]);
+            }
+        }
+        document.write("<br><br>");
+
+        document.write("<br><br>Transpose matrix<br>");
+        let b=[[],[],[],[]];
+        for(let i=0; i<4; i++){
+            document.write("<br>")
+            for(let j=0; j<3; j++){
+                b[i][j]=ar1[j][i];
+                document.write("\t &nbsp &nbsp", b[i][j]);
+            }
+        }        
+    </script>
+    <br><br>
+   
+
+    <!-- <p>Matrix Multiplication</p>
+    <script>
+        let arr1=[[]];
+        let arr2=[[]];
+        let arr3=[[]];
+
+        arr1=[[1,2,3],[4,5,6],[7,8,9]];
+        arr2=[[2,3,5],[1,4,7],[2,4,8]];
+        
+        for(let i=0; i<arr1.length; i++){
+            document.write("<br>")
+            for(let j=0; j<arr1.length; j++){
+                document.write(arr1[i][j],"\t");
+            }
+        }
+        document.write("<br>")
+       
+        for(let i=0; i<arr2.length; i++){
+            document.write("<br>")
+            for(let j=0; j<arr2.length; j++){
+                document.write(arr2[i][j],"\t")
+            }
+        }
+       
+        document.write("<br>Matrix Multiplication")
+        for(let i=0; i<3; i++){
+            for(let j=0; j<3; j++){
+                arr3=[i][j]=arr1[i][j]*arr2[i][j];
+            }
+        }
+
+        for(let i=0; i<3; i++){
+            document.write("<br>")
+            for(let j=0; j<3; j++){
+                document.write("\t",arr3[i][j]);
+            }
+        }
+
+    </script> -->
+</body>
+</html>

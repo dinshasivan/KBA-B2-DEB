@@ -39,7 +39,7 @@
         <div class="pt-10 flex ">
             <h2 class="text-purple-800 text-xl pl-4 ">s122</h2>
             <h2 class="text-purple-800 text-xl pl-96 mt-4">RS.10000</h2>
-            <a href="#" class="p-4 bg-purple-600 rounded-lg ml-10">Add to Cart</a>
+            <a href="#" class="pl-2 pr-2 pt-2 bg-purple-600 rounded-lg ml-5">Add to Cart</a>
         </div>
         <div class="pl-4">
         <h2 class="text-purple-800 text-xl ">Description</h2>
@@ -59,9 +59,38 @@
             <li> &#x2022;24/7 support</li>
             <button class="p-4 bg-purple-600 rounded-lg ml-10 mt-4">Edit Course</button>
             <button class="p-4 bg-red-600 rounded-lg ml-10 mt-4">Remove Course</button>
+            <button id="good" class="font-bold font-mono ml-6">Good</button>
+            <button id="avg" class="font-bold font-mono ml-2">Average</button>
+            <button id="bad" class="font-bold font-mono ml-2">Bad</button>
         </ul>
     </div>
     </div>
+
+    <script>
+        
+        let element = document.createElement("input");
+        element.type = "radio";
+        element.id = "feedback";
+        element.name ="feedback"
+        document.getElementById("good").appendChild(element);
+        
+        
+
+        let element1 = document.createElement("input");
+        element1.type = "radio";
+        element1.id = "feedback";
+        element1.name ="feedback"
+        document.getElementById("avg").appendChild(element1);
+
+        let element2 = document.createElement("input");
+        element2.type = "radio";
+        element2.id = "feedback";
+        element2.name ="feedback"
+        document.getElementById("bad").appendChild(element2);
+
+    
+
+</script>
 </body>
 
 </html>
