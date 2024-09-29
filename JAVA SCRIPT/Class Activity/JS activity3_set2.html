@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activity 3 Set 2</title>
+    <title>Activity 3 </title>
 </head>
 
 <body>
@@ -14,18 +14,18 @@
         <h3>Program to check whether a given positive number is a multiple of 3 or 7</h3>
         <script>
 
-            let num1 = 84;
+            let num = 84;
 
-            document.write("number is:\t", num1)
-            if (num1 % 3 == 0) {
+            document.write("number is:\t", num)
+            if (num % 3 == 0) {
 
-                document.write("<br><br>",num1," \t divisible by 3")
+                document.write("<br><br>",num," \t divisible by 3")
             }
-            else if (num1 % 7 == 0) {
-                document.write("<br><br> ",num1,"\t divisible by 7")
+            else if (num % 7 == 0) {
+                document.write("<br><br> ",num,"\t divisible by 7")
             }
             else {
-                document.write("<br><br> ",num1," is not divisible by wither 3 or 7")
+                document.write("<br><br> ",num," is not divisible by wither 3 or 7")
             }
         </script>
    
@@ -34,12 +34,12 @@
 
         <script>
 
-            let m = 10;
-            let n = -10;
-            let p = 5;
+            let x = 10;
+            let y = -10;
+            let z = 5;
 
-            let prdt = m * n * p;
-            document.write(`Product of numbers ${m}, ${n} and ${p} is ${prdt}`)
+            let prd = x * y * z;
+            document.write(`Product of numbers ${x}, ${y} and ${y} is ${prd}`)
             if (Math.sign(prdt) == 1) {
 
                 document.write("<br><br> Positive")
@@ -87,9 +87,9 @@
         <h3>Program to print the month name by given number using Switch Case</h3>
 
         <script>
-            let num2 = 9;
+            let n = 9;
 
-            switch (num2) {
+            switch (n) {
 
                 case 1: {
                     document.write(" January")
@@ -180,6 +180,39 @@
             } else if (temperature >= 40) {
                 document.write("It's Very Hot<br>");
             }
+        </script>
+
+        <p>Quadratic Equation</p>
+        <script>
+            let a=3, b=5, c=2;
+            document.write("a=",a,"\tb=",b,"\tc=",c,"<br>")
+            document.write("Solve this equation-:ax<sup>2</sup >+bx +c=0<br>");
+            document.write(a,"x<sup>2</sup >+",b,"x +",c,"=",0);
+            document.write("<br>find discriminat-:b<sup>2</sup>-4ac<br>");
+
+            document.write(b,"<sup>2</sup>-",4,"*",a,"*",c,"<br>");
+
+            let discriminat=(b*b)-(4*a*c);
+            document.write("Quadratic Formula-: x = -b ± √(b2 - 4ac)/2a<br>")
+
+            if(discriminat>0){
+                let r1=(-b)+(Math.sqrt(discriminat))/2*a;
+                
+                let r2=(+b)+(Math.sqrt(discriminat))/2*a;
+                document.write("Roots are real and different<br>")
+                document.write("root1: ",r1,"<br> root2:",r2)
+                
+            }
+            else if(discriminat==0){
+                let r3=(-b)+(Math.sqrt(discriminat))/2*a;
+                document.write("Roots are real and same<br>")
+                document.write(r3,"<br>");
+            }
+            else{
+                document.write("Imaginary value");
+            }
+
+            
         </script>
    
 </body>
