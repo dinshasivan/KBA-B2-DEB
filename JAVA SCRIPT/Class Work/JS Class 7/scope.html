@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    Scope of Functions - Introduction
+</title>
+</head>
+<body>
+    <h1>   Scope of functions </h1>
+    <p>    Open your browser to see the output </p>
+
+<script>
+    function outer(){
+        let outervar = 'I am outer';
+        function inner(){
+            console.log('I am inner');
+            console.log(outervar);
+
+        }
+        inner();
+    }
+
+outer();
+
+</script>
+</body>
+</html>

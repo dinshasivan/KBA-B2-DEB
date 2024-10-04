@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Area</title>
+</head>
+<body>
+    <h1>Claculate Area using Function</h1>
+    <script>
+        let length = 5;
+        let width = 10;
+        
+        function calculateArea(length, width){
+            return length*width;
+        }
+
+        let area=calculateArea(length, width);
+       
+        console.log("Area of a rectangle:",area);
+
+        function calculatePerimeter(){
+            return 2*length+width;
+        }
+
+        let perimeter=calculatePerimeter(length,width);
+        console.log("Perimeter of a rectangle:",perimeter);
+    </script>
+</body>
+</html>

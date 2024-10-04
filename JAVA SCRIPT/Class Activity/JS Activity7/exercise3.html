@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Take three numbers and find largest number using arrow function</h2>
+    <script>
+        let largest = (a,b,c)=>{
+            if(a>b && a>c){
+                console.log(`${a} is greater than ${b} & ${c}`)
+            }else if(b>c){
+                console.log(`${b} is greater than ${a} & ${c}`)
+            }else{
+                console.log(`${c} is greater than ${b} & ${a}`)
+            }
+        }
+        largest(3,15,9);
+    </script>
+</body>
+</html>

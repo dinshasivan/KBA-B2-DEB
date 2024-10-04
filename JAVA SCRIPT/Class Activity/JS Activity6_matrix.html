@@ -9,7 +9,7 @@
    <p> Check whether the two matrix are same or not</p> 
    <script>
     let array1=[[2,3,5],[6,7,8],[4,3,2]];
-    let array2=[[1,4,3],[3,7,8],[3,7,8]];
+    let array2=[[3,4,7],[3,10,5],[1,2,5]];
 
     document.write("Array 1<br>");
     for(let i=0; i<array1.length;i++){
@@ -27,14 +27,21 @@
         }
     }
 
+    let flag=0;
     for(let i=0; i<array1.length;i++){
         for(let j=0;j<array1.length;j++){
-            if(array1[i][j]===array2[i][j]){
-                
-            }
+            if(array1[i][j]!=array2[i][j]){
+                flag=1;
+            } 
         }
     }
-    document.write("<br>Matrix are different<br>");
+   
+    if(flag==1){
+        document.write("<br>Matrix are different")
+    }
+    else{
+        document.write("<br>Matrix are same")
+    }
 
    
    </script>

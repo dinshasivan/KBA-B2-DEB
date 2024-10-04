@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User info</title>
+</head>
+<body>
+    <h2>User info using nested function</h2>
+    <script>
+        function userInfo(userName){
+            console.log("Welcome",userName);
+            (function(){
+                console.log(`User ${userName} has logged in`)
+            })();
+            // displayMessage();
+        }
+        userInfo("Dinsha");
+    </script>
+</body>
+</html>

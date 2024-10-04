@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Output Displayed in console</h1>
+
+
+    <script>
+
+
+        let person1 = {
+            firstName: 'Dinsha',
+            lastName: 'Sivan'
+        }
+
+        let person2 = {
+            firstName: 'Sreelekha',
+            lastName: 'Sreenivasan'
+        }
+        let person3 = {
+            firstName: 'Deepa',
+            lastName: 'Sivan'
+        }
+
+        function printFullName() {
+            console.log("Full Name: ",this.firstName + " " + this.lastName)
+        }
+
+        printFullName.call(person1);
+        printFullName.apply(person2);
+        const bindFunction = printFullName.bind(person3);
+        bindFunction();
+
+
+    </script>
+</body>
+</html>
