@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            list-style-type: none;
+            margin: 10px 0;
+        }
+        .priority-high{color: red;}
+        .priority-medium{color: yellow;}
+        .priority-low{color: green;}
+
+        .watched-movies{
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movies</h1>
+    <input type="text"  id="input_field" placeholder="Enter a movie">
+    <input type="number"  id="priority" placeholder="Enter a priority">
+    <input type="submit"  id="add" value="Add Movie" onclick="add_movie()">
+    <ul id="movie_list"></ul>
+
+    <script>
+        let movies=[];
+        let priorities=[];
+
+       
+
+        function add_movie(){
+            let movie=document.getElementById("input_field");
+            let priority=document.getElementById("priority");
+
+            let movielist =document.getElementById("movie_list");
+
+            let movi=movie.value.trim();
+            let prioritty=Number(priority.value.trim());
+
+            if(movi!=='' && !isNaN(prioritty) && prioritty>=1 && prioritty<=3){
+                movies.push(movi);
+                priorities.push(prioritty);
+
+                let li=document.createElement("li");
+                li.textContent=movi;
+
+                switch(prioritty){
+                   case 1: 
+                        li.classList.add("priority-high");
+                        break;
+                    case 2:
+                        li.classList.add("priority-medium");
+                        break;
+                    case 3:
+                        li.classList.add("priority-low");
+                        break;            
+                   
+                }
+
+                let watchedbtn=document.createElement("button")
+                watchedbtn.textContent="Watched";
+                watchedbtn.onclick=function(){
+                    li.classList.toggle("watched-movies")
+                };
+                li.appendChild(watchedbtn);
+
+                let editbtn=document.createElement("button");
+                editbtn.textContent="Remove";
+                editbtn.onclick=function(){
+                    newMovie=prompt("Enter a new movie",newMovie);
+                    if(newMovie!==NULL && newMovie.trim()!==''){
+                        movieIndex=movies.indexOf(movi);
+                        movies[movieIndex]=newMovie;
+                        movi=newMovie;
+                    }
+                };
+                li.appendChild(editbtn);
+
+                let removebtn=document.createElement("button");
+                removebtn.textContent="Remove";
+                removebtn.onclick=function(){
+                    movielist.removeChild(li);
+                    let movieIndex=movies.indexOf(movi);
+                    movies.splice(movieIndex,1);
+                    priorities.splice(movieIndex,1);
+
+                };
+                li.appendChild(removebtn);
+                movielist.appendChild(li);
+                movie.value='';
+                priority.value='';
+            }
+            else{
+                alert('please enter a valid task and priority between 1 and 3');
+            }
+             
+        }
+
+        
+    </script>
+</body>
+</html>

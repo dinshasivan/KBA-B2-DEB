@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Expences Details</h1>
+    <input type="text"  id="dec" placeholder="Expence description">
+    <input type="number"  id="amt" placeholder=" Enter Amount">
+    <input type="text"  id="cat" placeholder="Expence category">
+    <input type="submit" name="" id="" onclick="addExpences()">
+    <ul id="exp_list"></ul>
+
+    <script>
+        function addExpences( ){
+            const dec_input=document.getElementById("dec").value.trim();
+            const amt_input=document.getElementById("amt").value.trim();
+            const cat_input=document.getElementById("cat").value.trim();
+
+            // console.log(dec_input,amt_input,cat_input);
+            if(dec_input !=='' && amt_input!=='' && cat_input!==''){
+                saveTaskToLocalStorage(dec_input,amt_input,cat_input);
+                createExpenseElement(dec_input,amt_input,cat_input);
+                dec.value =''; //clear input
+                amt.value='';
+                cat.value='';
+            }
+            
+            function  saveTaskToLocalStorage(description,amount,category){
+                let expensesArray = getExpenseFromLocalStorage();
+                expensesArray.push(description,amount,category);
+                localStorage.setItem('expense',JSON.stringify(expensesArray));
+                console.log(localStorage);
+            }
+
+            function getExpenseFromLocalStorage(){
+                const expensesArray=localStorage.getItem('expense');
+                return expensesArray ? JSON.parse(expensesArray): [];
+            }
+
+            function  createExpenseElement(description,amount,category){
+                const expenseList =document.getElementById("exp_list");
+                const li=document.getElementById("li");
+                li.textContent=description,amount,category
+                expenseList.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- Add an expense with description, amount, and category.
+Display expenses with different colors based on category (Food - green, Transport - blue, Entertainment - purple).
+Mark an expense as "completed" by striking through the text and changing the color to gray.
+Edit the description of an expense.
+Remove an expense from the list.
+Use arrays to keep track of expenses and their categories.
+Use type conversion to ensure the amount and category are handled correctly. -->

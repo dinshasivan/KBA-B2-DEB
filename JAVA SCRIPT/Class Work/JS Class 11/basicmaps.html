@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascrip map Methods</title>
+
+    <script>
+        function demostartMapMethods(){
+            const myMap = new Map();
+            //setting the values
+            myMap.set("name","Dinsha");
+            myMap.set(10,"number key");
+            myMap.set(true,"boolean key");
+
+            //getting values
+            document.getElementById('getName').innerHTML='Name:'+myMap.get('name');
+
+            //check if a value existing 
+            document.getElementById('hasKey').innerHTML ="has a key 10:" + myMap.has(10);//return boolean values
+
+            //delete an element
+            myMap.delete('name')
+            document.getElementById('afterDelete').innerHTML='After deleting name:'+ myMap.has("name");
+
+            //clear all the elements
+            myMap.clear();
+            document.getElementById('afterClear').innerHTML='After clearing the map, size:'+ myMap.size;//to count the elements
+        }
+    </script>
+</head>
+<body>
+    <h1>Javascrip Map Methods</h1>
+    <h2>Map Operations</h2>
+    <button onclick="demostartMapMethods()">Run Map Methods</button>
+    <div id="getName"></div>
+    <div id="hasKey"></div>
+    <div id="afterDelete"></div>
+    <div id="afterClear"></div>
+</body>
+</html>
+<!-- map is a type of object. its support all type, its contain inbuilt methods. specialised form of object
+  -->
