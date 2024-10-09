@@ -8,23 +8,23 @@
     <script>
         function shoppingCart(){
             let shoppingCart = new Map();
-            shoppingCart.set("Apple",2);
-            shoppingCart.set("Orange",4);
-            shoppingCart.set("Grape",3);
+            shoppingCart.set("Apple",[2,30]);
+            shoppingCart.set("Orange",[4,40]);
+            shoppingCart.set("Grape",[3,50]);
 
-            const prices ={
-                "Apple":30,
-                "Orange":40,
-                "Grape":50
-
-            }
 
             let totalCost=0;
-            shoppingCart.forEach((quantity,item)=>{
-                totalCost+=prices[item]*quantity;
+            
+            console.log(value);
+
+            shoppingCart.forEach((value,key)=>{
+                if(Array.isArray(value)){
+                    totalCost+=value[0]*value[1];
+                }
+                
             });
-            document.getElementById('totalCost').innerHTML='Total cost is:'+totalCost;
-            document.getElementById('cartSize').innerHTML= 'Number of items:'+shoppingCart.size;
+            document.getElementById('totalCost').innerHTML='Total cost is:'+ totalCost;
+            document.getElementById('cartSize').innerHTML= 'Number of items in cart:'+shoppingCart.size;
         }
     </script>
 </head>
