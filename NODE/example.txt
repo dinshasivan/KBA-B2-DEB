@@ -1,0 +1,2 @@
+Nodejs is runtime environment for javasript.
+it allows server side js
