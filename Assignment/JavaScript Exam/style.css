@@ -1,0 +1,19 @@
+.genre_action{
+    color: red;
+}
+.genre_comedy{
+    color: yellow;
+}
+.genre_drama{
+    color: blue;
+}
+.watched_movie{
+    text-decoration: line-through;
+    color: gray;
+}
+ul{
+    list-style-type: none;
+}
+.edit_title{
+    background-color: aqua;
+}
