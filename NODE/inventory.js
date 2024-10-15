@@ -1,5 +1,4 @@
-const { createDiffieHellmanGroup } = require('crypto');
-const { update } = require('lodash');
+
 const readline = require('readline');//import readline module
 const rl = readline.createInterface({
     input:process.stdin,

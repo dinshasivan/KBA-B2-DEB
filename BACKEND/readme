@@ -1,0 +1,10 @@
+Steps for installing express
+
+Step1: Initializing node project using command "npm init"
+Step2: installing express using command "npm install express"
+step3: Create a file  ".gitingore" to ignore files those do not want to push in git. Add the library name.
+Step4: Change the default js type into js6-->"type":"module" in package.json.
+Step5: Create a file index.js and write the program to initailize a port
+    a. First add the express library using import keyword.
+    b. Use the imported express to initialize the port.(Check the steps in index.js) 
+
