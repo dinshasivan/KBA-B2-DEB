@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Dropdown</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6">
+    <div>
+        <label for="name" class="text-2xl">Name</label>
+        <input type="text" class="w-70 text-2xl p-4 mb-4 border border-gray-300 rounded-lg"><br>
+
+        <label for="address" class="text-2xl">Address</label>
+        <textarea name="address" class="w-70 text-2xl p-4 mb-4 border border-gray-300 rounded-lg"></textarea><br>
+
+        <label for="degree" class="text-2xl">Degree:</label>
+        <input type="radio" name="degree" id="Btech"><label for="Btech" class="text-2xl ml-2">BTech</label>
+        <input type="radio" name="degree" id="Mtech"><label for="Mtech" class="text-2xl ml-2">MTech</label>
+        <input type="radio" name="degree" id="MCA"><label for="MCA" class="text-2xl ml-2">MCA</label>
+        <input type="radio" name="degree" id="others" onclick="selectOption()"><label for="others" class="text-2xl ml-2">Others</label>
+
+        <!-- This is where the dropdown will be inserted -->
+        <div id="select" class="mt-4"></div>
+    </div>
+
+    <script>
+        function selectOption() {
+            const selectContainer = document.getElementById('select');
+            selectContainer.innerHTML = '';  // Clear any existing dropdowns
+
+            // Create dropdown
+            const select = document.createElement('select');
+            select.className = 'w-70 p-2 border border-gray-300 rounded-lg text-xl';
+            
+            // Create the options
+            const options = ['BCA', 'PGDCA', 'BCom', 'MPhil'];
+            options.forEach(optionText => {
+                const option = document.createElement('option');
+                option.value = optionText;
+                option.textContent = optionText;
+                select.appendChild(option);
+            });
+
+            // Append the select element to the selectContainer
+            selectContainer.appendChild(select);
+        }
+    </script>
+</body>
+</html>
