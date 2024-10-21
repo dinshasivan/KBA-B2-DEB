@@ -1,6 +1,7 @@
-import { Router } from "express";
+import { json, Router } from "express";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
+import { authenticate } from "../Middleware/autherization.js";
 
 const adminRoute = Router(); //create instance 
 
@@ -9,6 +10,7 @@ adminRoute.get('/', (req, res) => {
 })
 const user=new Map();
 const secretKey="hello";
+//signup
 adminRoute.post('/signup', async (req, res) => {
     try {
         // const data = req.body;
@@ -64,7 +66,7 @@ adminRoute.post('/login', async (req,res)=>{
                 httpOnly:true
             });
             console.log(token);
-            res.status(200).json({message:"user login"})
+            res.status(200).json({token})
         }
     }
 
@@ -77,6 +79,44 @@ adminRoute.post('/login', async (req,res)=>{
 
     // }
 })
+
+//addcourse
+const course =new Map();
+adminRoute.post('/addcourse',authenticate,(req,res)=>{
+    // console.log(req.UserName);
+    // console.log(req.UserRole);
+    const role=req.UserRole;
+    try{
+        if(role=='Admin'){
+            // console.log('You can add course!');
+            const {
+                CourseId,
+                CourseName,
+                CourseType,
+                Description,
+                Price
+            }=req.body;
+            course.set(CourseId,{CourseName,CourseType,Description,Price});
+            res.status(200).json({message:"Successfully add course!"});
+           
+            console.log("Successfully added!");
+            console.log(course);
+            
+        }
+        else{
+            console.log("You are not an admin");
+        }
+    
+    }
+    catch(err) {
+        console.log(err);
+    }
+    
+
+
+
+})
+
 export {adminRoute};
 
 

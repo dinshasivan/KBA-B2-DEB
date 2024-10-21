@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 const userRoute = Router();
 
 const user=new Map();
+const certificates =new Map();
 
 userRoute.post('/issuuecertificate',(req,res)=>{
     try{
@@ -15,13 +16,13 @@ userRoute.post('/issuuecertificate',(req,res)=>{
             IssueDate
         }=req.body;
 
-        if(user.has(CertificateId)){
+        if(certificates.has(CertificateId)){
             console.log("Already Issued")
             res.status(200).json({message:"Already issued!"});
         }
         else{
-            user.set(CertificateId,{Course,CertificateName,Grade,IssueDate});
-            console.log(user);
+            certificates.set(CertificateId,{Course,CertificateName,Grade,IssueDate});
+            console.log(certificates);
             res.status(201).json({message:"New Certificate!"})
         }
     }
