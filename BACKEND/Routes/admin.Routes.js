@@ -2,14 +2,16 @@ import { json, Router } from "express";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import { authenticate } from "../Middleware/autherization.js";
+import dotenv from 'dotenv';
 
+dotenv.config();
 const adminRoute = Router(); //create instance 
 
 adminRoute.get('/', (req, res) => {
     res.send("Hello world")
 })
 const user=new Map();
-const secretKey="hello";
+const secretKey=process.env.SecretKey;
 //signup
 adminRoute.post('/signup', async (req, res) => {
     try {
@@ -111,12 +113,278 @@ adminRoute.post('/addcourse',authenticate,(req,res)=>{
     catch(err) {
         console.log(err);
     }
+})
+
+// adminRoute.post('/getCourse',authenticate,(req,res)=>{
+   
+//     try{
+//         if(req.UserName){
+//             const data=req.body;
+//             const search=data.Search;
+//             if(search){
+//                 const searchResult=[];
+//                 for(const[id,item] of course){
+//                     if(id.includes(search) || item.CourseName.includes(search)||item.CourseType.includes(search)){
+//                         searchResult.push(id,item.CourseName,item.CourseType,item.Price,item.Description);
+//                         console.log('Course Details',searchResult);
+//                         res.status(200).json({message:"seach item found"})
+//                         break;
+//                     }
+//                     else{
+//                         console.log("Course not available");
+//                         res.status(404).json({message:"Course not availbale"})
+//                     }
+//                 }
+//             }
+//             else{
+//                 console.log("please login!");
+                
+//             }
+           
+//         }
+//     }
+//     catch(err){
+//         console.log(err)
+//     }
+
+//     // console.log(course);
+// })
+
+adminRoute.get('/getCourse/:Id',authenticate,(req,res)=>{
+    const search=req.params.Id;
+    try{
+        if(req.UserName){
+            if(search){
+                const searchResult=[];
+                if(course.size>0){
+                    for(const[id,item] of course){
+                    
+                        if(id.includes(search) || item.CourseName.includes(search)||item.CourseType.includes(search)){
+                            searchResult.push(id,item.CourseName,item.CourseType,item.Price,item.Description);
+                            console.log('Course Details',searchResult);
+                            res.status(200).json({message:"seach item found"})
+                            break;
+                        }
+                        else{
+                            console.log("Course details not available");
+                            res.status(404).json({message:"Course not availbale"})
+                        }
+                    }
+                }
+                else{
+                    console.log("Data base is empty");
+                    
+                }
+            }
+        }
+        else{
+            console.log("please login!");
+        }
+    }
+    catch(err){
+        console.log("error handled");
+    }
     
 
+     
+})  //get values using params
 
+adminRoute.get('/getCourse',(req,res)=>{
+    console.log(req.query.courseId);
+     
+})
+
+adminRoute.put('/updateCourse/:id',authenticate,(req,res)=>{
+    // console.log(req.UserName);
+    // console.log(req.UserRole);
+    const role=req.UserRole;
+    console.log(role);
+    
+    try{
+        if(role=='Admin'){
+            const data=req.body;
+            const update=req.params.id;
+            console.log(update);
+            if(course.has(update)){
+                const item=course.get(update);
+                // console.log(item);
+                // const value=req.body
+                const {
+                    newName,
+                    newDescription,
+                    newType,
+                    newPrice
+                }=data;
+                item.CourseName= newName 
+                item.CourseType= newType 
+                item.Description = newDescription 
+                item.Price = newPrice 
+                course.set(update,item);
+                console.log("successfully update",course);
+                res.status(200).json({message:"successfully updated"})
+                
+            }
+            else{
+                console.log("Not found")
+                res.status(404).json({message:"Not found"})
+            }
+            
+        }
+        else{
+            console.log("You are not an admin");
+        }
+    
+    }
+    catch(err) {
+        console.log(err);
+    }
+})
+
+adminRoute.post('/updateCourse',authenticate,(req,res)=>{
+    // console.log(req.UserName);
+    // console.log(req.UserRole);
+    const role=req.UserRole;
+    try{
+        if(role=='Admin'){
+            const data=req.body;
+            const update=data.newId;
+            // console.log(update);
+            if(course.has(update)){
+                const item=course.get(update);
+                // console.log(item);
+                // const value=req.body
+                const {
+                    newId,
+                    newName,
+                    newDescription,
+                    newType,
+                    newPrice
+                }=data;
+                item.CourseId= newId || item.CourseId
+                item.CourseName= newName || item.CourseName
+                item.CourseType= newType || item.CourseType
+                item.Description = newDescription || item.Description
+                item.Price = newPrice || item.Price
+                course.set(newId,item);
+                console.log("successfully update",course);
+                res.status(200).json({message:"successfully updated"})
+                
+            }
+            else{
+                console.log("Not found")
+                res.status(404).json({message:"Not found"})
+            }
+            // const {
+            //     CourseId,
+            //     CourseName,
+            //     CourseType,
+            //     Description,
+            //     Price
+            // }=req.body;
+            // course.set(CourseId,{CourseName,CourseType,Description,Price});
+            // res.status(200).json({message:"Successfully update the course!"});
+           
+            // console.log("Successfully updated!");
+            // console.log(course);
+            
+        }
+        else{
+            console.log("You are not an admin");
+        }
+    
+    }
+    catch(err) {
+        console.log(err);
+    }
+})
+
+adminRoute.patch('/updateCourse/:id',authenticate,(req,res)=>{
+    // console.log(req.UserName);
+    // console.log(req.UserRole);
+    const role=req.UserRole;
+    try{
+        if(role=='Admin'){
+            const data=req.body;
+            const update=req.params.id;
+            // console.log(update);
+            if(course.has(update)){
+                const item=course.get(update);
+                // console.log(item);
+                // const value=req.body
+                const {
+                    
+                    newName,
+                    newDescription,
+                    newType,
+                    newPrice
+                }=data;
+                
+                item.CourseName= newName || item.CourseName
+                item.CourseType= newType || item.CourseType
+                item.Description = newDescription || item.Description
+                item.Price = newPrice || item.Price
+                course.set(update,item);
+                console.log("successfully update",course);
+                res.status(200).json({message:"successfully updated"})
+                
+            }
+            else{
+                console.log("Not found")
+                res.status(404).json({message:"Not found"})
+            }
+        }
+        else{
+            console.log("You are not an admin");
+        }
+    
+    }
+    catch(err) {
+        console.log(err);
+    }
+})
+
+
+///display
+
+adminRoute.get('/get/:id',(req,res)=>{
+    const id = req.params.id
+    const value = course.get(id);
+    if(value){
+        console.log(value);
+        
+    }else{
+        console.log("no data found!")
+    }
 
 })
 
+
+
+adminRoute.delete('/deleteCourse/:id',authenticate,(req,res)=>{
+    const role=req.UserRole;
+    try{
+        if(role=='Admin'){
+            const data=req.params.id;
+            if(course.has(data)){
+                course.delete(data);
+                console.log("Course deleted");
+                res.status(200).json({message:"course deleted"})
+            }
+            else{
+                console.log("Course not found!");
+                res.status(404).json({message:"course not found"})
+                
+            }
+        }
+        else{
+            console.log("Please login!");
+            
+        }
+    }
+    catch(err){
+
+    }
+})
 export {adminRoute};
 
 
