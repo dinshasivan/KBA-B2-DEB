@@ -344,22 +344,6 @@ adminRoute.patch('/updateCourse/:id',authenticate,(req,res)=>{
 })
 
 
-///display
-
-adminRoute.get('/get/:id',(req,res)=>{
-    const id = req.params.id
-    const value = course.get(id);
-    if(value){
-        console.log(value);
-        
-    }else{
-        console.log("no data found!")
-    }
-
-})
-
-
-
 adminRoute.delete('/deleteCourse/:id',authenticate,(req,res)=>{
     const role=req.UserRole;
     try{

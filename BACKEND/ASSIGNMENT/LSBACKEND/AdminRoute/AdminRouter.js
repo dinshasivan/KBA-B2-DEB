@@ -1,11 +1,12 @@
 import { Router } from "express";
 import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
 
 const adminRoute = Router();
 
 const user=new Map();
 
-
+const secretKey='hello'
 adminRoute.post('/signup', async (req, res) => {
     try {
         const { FirstName,
@@ -44,15 +45,31 @@ adminRoute.post('/login', async (req,res)=>{
         res.status(403).json({message:"user not exist"})
     }
     else{
-        // console.log(Password);
+        console.log(Password);
+       
+
         const invalid = await bcrypt.compare(Password, result.Password);
         console.log(invalid);
         if(!invalid){
             res.status(403).json({message:"Password is incorect"})
         }
         else{
-            res.status(200).json({message:"user login"})
+            const token= jwt.sign({UserName:UserName,UserRole:result.Role},secretKey,{expiresIn:"1h"})
+            res.cookie('authToken',token,{
+                httpOnly:true
+            });
+            console.log(token);
+            res.status(200).json({token})
         }
     }
+
+    // if(user.has(UserName)){
+    //     console.log(user.get(UserName));
+    //     res.status(403).json({ message: "User already registered!" });
+    // }
+    // else{
+    //     console.log("User doesn't exist!");
+
+    // }
 })
 export{adminRoute};

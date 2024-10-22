@@ -1,29 +1,39 @@
 import { Router } from "express";
 import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
+import { authenticate } from "../mdware/auth.js";
+
 
 const userRoute = Router();
 
 const user=new Map();
 const certificates =new Map();
-
-userRoute.post('/issuuecertificate',(req,res)=>{
+const secretKey='hello'
+userRoute.post('/issuuecertificate',authenticate,(req,res)=>{
+    const userRole=req.userRole;
     try{
-        const {
-            CertificateId,
-            Course,
-            CertificateName,
-            Grade,
-            IssueDate
-        }=req.body;
-
-        if(certificates.has(CertificateId)){
-            console.log("Already Issued")
-            res.status(200).json({message:"Already issued!"});
+        if(userRole=='Admin'){
+            const {
+                CertificateId,
+                Course,
+                CertificateName,
+                Grade,
+                IssueDate
+            }=req.body;
+    
+            if(certificates.has(CertificateId)){
+                console.log("Already Issued")
+                res.status(200).json({message:"Already issued!"});
+            }
+            else{
+                certificates.set(CertificateId,{Course,CertificateName,Grade,IssueDate});
+                console.log(certificates);
+                res.status(201).json({message:"New Certificate!"})
+            }
         }
         else{
-            certificates.set(CertificateId,{Course,CertificateName,Grade,IssueDate});
-            console.log(certificates);
-            res.status(201).json({message:"New Certificate!"})
+            console.log("your not an admin ");
+            
         }
     }
     catch(error){
@@ -77,8 +87,14 @@ userRoute.post('/login', async (req,res)=>{
             res.status(403).json({message:"Password is incorect"})
         }
         else{
-            res.status(200).json({message:"user login"})
+            const token= jwt.sign({UserName:UserName,UserRole:result.Role},secretKey,{expiresIn:"1h"})
+            res.cookie('AuthToken',token,{
+                httpOnly:true
+            });
+            console.log(token);
+            res.status(200).json({token})
         }
     }
+
 })
 export{userRoute};
