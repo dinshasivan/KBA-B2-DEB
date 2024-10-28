@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Average </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h1>Enter Student Name and Mark</h1>
+    
+    <label for="studentName" class="text-2xl">Student Name:</label>
+    <input type="text" id="studentName" required><br><br>
+    
+    <label for="studentMark">Mark:</label>
+    <input type="number" id="studentMark" min="0" max="100" required><br><br>
+    
+    <button onclick="addStudent()">Submit</button>
+    <button onclick="calculateAverage()">Class Average</button><br><br>
+
+    <h3>Search for a Student's Grade</h3>
+    <label for="searchStudent">Student Name:</label>
+    <input type="text" id="searchStudent">
+    <button onclick="searchStudent()">Search</button>
+    
+    <h2 id="averageOutput"></h2>
+    <h2 id="searchOutput"></h2>
+
+    <script>
+       
+        const students = [];
+
+        function addStudent() {
+            const studentName = document.getElementById('studentName').value;
+            const studentMark = parseFloat(document.getElementById('studentMark').value);
+            
+            if (studentName && !isNaN(studentMark) && studentMark >= 0 && studentMark <= 100) {
+                students.push({ name: studentName, mark: studentMark });
+                alert(`Student ${studentName} with mark ${studentMark} added.`);
+                
+                document.getElementById('studentName').value = '';
+                document.getElementById('studentMark').value = '';
+            } else {
+                alert("Please enter a valid name and mark between 0 and 100.");
+            }
+        }
+        const averageOutput= document.getElementById('averageOutput');
+        function calculateAverage() {
+            if (students.length === 0) {
+                
+                averageOutput.innerHTML = "No marks entered yet.";
+            } else {
+                const total = students.reduce((sum, student) => sum + student.mark, 0);
+                const average = total / students.length;
+                averageOutput.innerHTML = `Class Average: ${average}`;
+            }
+        }
+
+        function searchStudent() {
+            const searchName = document.getElementById('searchStudent').value.trim();
+            const student = students.find(s => s.name.toLowerCase() === searchName.toLowerCase());
+
+            if (student) {
+                const grade = getGrade(student.mark);
+                document.getElementById('searchOutput').innerText = `${student.name}'s Grade: ${grade}`;
+            } else {
+                document.getElementById('searchOutput').innerText = "Student not found.";
+            }
+        }
+
+        function getGrade(mark) {
+            if (mark >= 90) return 'A';
+            if (mark >= 80) return 'B';
+            if (mark >= 70) return 'C';
+            if (mark >= 60) return 'D';
+            return 'F';
+        }
+    </script>
+</body>
+</html>

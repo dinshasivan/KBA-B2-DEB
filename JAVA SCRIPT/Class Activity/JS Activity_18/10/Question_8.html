@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="ml-32 mt-20">
+        <label for="name" class="text-xl">Name of Subject:</label>
+        <input type="text" id="name" class=" h-10 rounded-lg border solid "><br><br>
+        <label for="mark"  class="text-xl">Mark:</label>
+        <input type="number" id="mark" class=" h-10 rounded-lg border solid"><br><br>
+    
+        <button class="ml-52 border solid p-2 rounded-lg text-xl" onclick="displayGrade()">Submit</button>
+        <p id="display_grade"></p>
+    </div>
+
+    <script>
+        
+        function displayGrade(){
+            const sub=document.getElementById('name').value;
+            const mark=document.getElementById('mark').value;
+            const displaygrade=document.getElementById('display_grade');
+            let grade;
+
+            if(mark>90){
+                grade='A+';
+            }
+            else if(mark<=90 && mark>=80){
+                grade='A'
+            }
+            else if(mark<80 && mark>=70){
+                grade='B+'
+            }
+            else if(mark<70 && mark>=60){
+                grade='C+'
+            }
+            else if(mark<=60 && mark>=50){
+                grade='C'
+            }
+            else{
+                grade='F'
+            }
+
+            if(sub && !isNaN(mark)){
+                displaygrade.innerHTML=`Subject :${sub} \n Mark :${mark} \n Grade:${grade}`;
+            }
+            else{
+                result.innerText = 'Please enter both subject name and mark.';
+            }
+        }
+    </script>
+</body>
+</html>

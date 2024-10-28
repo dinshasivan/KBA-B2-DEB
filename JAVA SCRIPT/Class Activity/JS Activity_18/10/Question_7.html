@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="ml-32 mt-20">
+        <label for="element" class="text-xl">Enter Element:</label>
+        <input type="number" id="element"  class="h-10 rounded-lg border solid"><br>
+        <button onclick="addElement()"class="ml-20 mt-4 border solid p-2 rounded-lg text-xl">Add Element</button>
+
+        <p id="array" class="text-xl"></p>
+        <label for="select"class="text-xl">Index:</label>
+        <select id="select" onchange="displayElement()" class="h-10 rounded-lg border solid">
+            <option value=""class="text-xl"></option>
+        </select>
+        <p id="index_display" class="text-xl"></p>
+        <!-- <label for="selected_element">The Element is:</label> -->
+         <h2 class="text-xl font-bold"> The Array in Sorted Order</h2>
+         <p id="sorted" class="text-xl"></p><br>
+         <label for="search" class="text-xl">Search:</label>
+         <input type="search" id="search" class="h-10 rounded-lg border solid"><br>
+         <button onclick="searchElemnt()"class="ml-20 mt-4 border solid p-2 rounded-lg text-xl">Search</button>
+         <p id="search_result" class="text-xl"></p>
+
+         <h2 class="text-xl font-bold">The Reversed Array </h2>
+         <p id="reverse" class="text-xl"></p>
+    </div>
+
+    <script>
+        const elementArray=[];
+        const displayArray=document.getElementById('array');
+        const sortedArray=document.getElementById('sorted');
+        const reversedArray=document.getElementById('reverse');
+        function addElement(){
+           const elements= document.getElementById('element').value;
+           elementArray.push(elements);
+           document.getElementById('element').value=''
+           displayArray.innerHTML=`Array: [${elementArray}]`;
+
+           const selected= document.getElementById('select');
+           const option=document.createElement('option');
+           option.value=elementArray.length-1;
+           option.text=`Index ${elementArray.length}`;
+           selected.appendChild(option)
+           const sorted=elementArray.sort();
+           sortedArray.innerHTML=`[${sorted}]`;
+           const reversed=elementArray.reverse();
+           reversedArray.innerHTML=`[${reversed}]`;
+        }
+
+        function displayElement(){
+            const selected= document.getElementById('select').value;
+            const indexDisplay=document.getElementById('index_display');
+
+            if (selected) {
+                indexDisplay.innerText = `The element is: ${elementArray[selected]}`;
+            } else {
+                indexDisplay.innerText = '';
+            }  
+        }
+
+        function searchElemnt(){
+            const search=document.getElementById('search').value;
+            const searchResult=document.getElementById('search_result');
+            document.getElementById('search').value=''
+            if(elementArray.length==0){
+                searchResult.innerHTML='The array is empty';
+            }
+
+            const index=elementArray.indexOf(search);
+            if(index!==-1){
+                searchResult.innerHTML=`Element ${search} found at index ${index}`;
+                
+            }
+            else{
+                searchResult.innerHTML=`Element ${search}  not found!`;
+            }
+        }
+    </script>
+</body>
+</html>

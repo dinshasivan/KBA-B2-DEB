@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="ml-20 mt-10">
+        <label for="side" class="text-xl">Enter side of square :</label>
+        <input type="number" id="side" class=" h-10 rounded-lg border solid "><br><br>
+        <button class="ml-52 border solid p-2 rounded-lg text-xl" onclick="areaOfSquare()">Area of square</button><br><br>
+
+        <label for="length" class="text-xl">Enter the length:</label>
+        <input type="number" id="length" class=" h-10 rounded-lg border solid "><br><br>
+        <label for="breadth"  class="text-xl">Enter the breadth:</label>
+        <input type="number" id="breadth" class=" h-10 rounded-lg border solid"><br><br>
+
+        <button class="ml-52 border solid p-2 rounded-lg text-xl" onclick="areaOfTRectangle()">Area of rectangle</button><br><br>
+
+        <label for="side" class="text-xl">Enter radius:</label>
+        <input type="number" id="radius" class=" h-10 rounded-lg border solid "><br><br>
+        <button class="ml-52 border solid p-2 rounded-lg text-xl" onclick="areaOfCircle()">Area of Circle</button>
+
+        <p id="square"></p>
+        <p id="rectangle"></p>
+        <p id="circle"></p>
+    </div>
+
+    <script>
+        const square=document.getElementById('square');
+        const rectangle=document.getElementById('rectangle');
+        const circle=document.getElementById('circle');
+        function areaOfSquare(){
+            
+            const side= document.getElementById('side').value;
+            const area=side*side;
+            square.innerHTML= `Area of square is: ${area}`     
+        }
+        
+        function areaOfTRectangle(){
+            const length=document.getElementById('length').value;
+            const breadth=document.getElementById('breadth').value;
+
+            const areaOfTRectangle=length*breadth;
+            rectangle.innerHTML=`Area of Rectangle is:${areaOfTRectangle}`
+        }
+
+        function areaOfCircle(){
+            const pi=3.14;
+            const radius=parseFloat( document.getElementById('radius').value);
+            const areaOfCircle=pi*radius*radius;
+
+            circle.innerHTML=`Area of Circle:${areaOfCircle}`;
+        }
+    </script>
+</body>
+</html>
