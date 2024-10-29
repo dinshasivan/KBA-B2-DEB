@@ -6,15 +6,57 @@
     <title>Certificate Dapp</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script>
+    window.onload= async ()=>{
+        try{
+            const response=await fetch('http://127.0.0.1:8000/viewCertificate',{
+                method:"GET",
+                credentials: "include",
+            })
+
+            console.log(response.status);
+
+            const certificateId= localStorage.getItem('certiId');
+
+            console.log(certificateId);
+
+            const data=await response.json();
+            console.log(data);
+
+            if(response.status == 200){
+                data.forEach(element => {
+                    if (element[0] === certificateId) {
+                        console.log(element);
+                        document.getElementById('h1').textContent= element[1].Course;
+                        document.getElementById('para').textContent='This is certified that \t' + element[1].CName;
+                        document.getElementById('parag').textContent='has successfully completed \t' + element[1].Course;
+                        document.getElementById('date').textContent='with grade\t'+ element[1].Grade + ' on \t' + element[1].IssueDate;
+                    
+                    }
+                    else{
+                        alert("data not found!")
+                    }
+
+                });
+            }
+            
+            
+            
+        }
+        catch(error){
+
+        }
+    }
+</script>
 <body class="bg-violet-50">
     
-    <div class="w-2/4 m-auto bg-violet-100 mt-40">
+    <div class="w-2/4 m-auto bg-violet-100 mt-40 shadow-md">
         <div class="p-16">
-            <p class="font-mono font-bold text-2xl text-center text-2xl">Kerala Blockchain Academy</p>
+            <p class="font-mono font-bold text-2xl text-center text-2xl" id="h1"></p>
             <img src="online-course.png" class="w-1/5  m-auto pt-12">
-            <p class="font-mono text-center pt-12">This is certified that Dinsha  </p>
-            <p class="font-mono text-center">has successfully completed Blockchain Foundation</p>
-            <p class="font-mono text-center">width S on 2024-08-09</p>
+            <p class="font-mono text-center pt-12" id="para"> </p>
+            <p class="font-mono text-center" id="parag"></p>
+            <p class="font-mono text-center" id="date"></p>
         </div>
     </div>
    

@@ -44,28 +44,32 @@
                 container.innerHTML='';
                 data1.forEach(course => {
                     console.log(course);
-                    const coursediv=document.createElement("div");
-                    coursediv.style.border='2px solid red';
-                    coursediv.style.width='250px'
+        
+                    
+                    const coursediv=document.createElement("div")
+                    coursediv.className="w-96 h-64 mb-4 p-6 ml-4 bg-gray-200 mr-4"
 
                    const coursename=document.createElement("h1");
+                   coursename.className="text-center font-bold font-mono text-xl text-purple-700"
                    coursename.id='name';
                    coursename.value=course[1].CourseName;
                    coursename.innerHTML=course[1].CourseName;
                    const image=document.createElement("img");
-                   image.src="./download.png";
+                   image.src="/Tilewind/Class Work/images/blockchain.jpeg";
+                   image.className="w-40 h-18 ml-24 p-2"
                    const description=document.createElement("p");
+                   description.className="text-center font-bold font-mono text-purple-500"
                    description.innerHTML=course[1].Description;
 
                    const more=document.createElement("input");
                    more.type='button';
                    more.value='View More'
-                   more.style.border='2px solid black';
+                   more.className='p-2 border solid rounded-lg bg-purple-400 mt-4 ml-64 cursor-pointer hover:bg-purple-600';
 
                    more.onclick=function(){
-                    handleMore((course[1]))
+                    handleMore((course[0]))
                    };
-               
+                   
                    coursediv.appendChild(coursename);
                    coursediv.appendChild(image);
                    coursediv.appendChild(description);
@@ -80,10 +84,10 @@
     }
 
 
-    function handleMore(courseDetails){
+    function handleMore(vale1){
         // const more=document.getElementById("name").value;
-        console.log(courseDetails);
-        localStorage.setItem('course',JSON.stringify( courseDetails));
+        console.log(vale1);
+        localStorage.setItem('courseid',vale1);
         window.location.href='./viewCourse.html'
             
     }
@@ -94,7 +98,7 @@
         <div class='flex items-center'>
 
             <a href="#" >
-                <img class='m-1p-2 size-12' src="./kbalogo.jpeg" alt="logo" />
+                <img class='m-1p-2 size-12' src="/Tilewind/Class Work/images/kbalogo.png" alt="logo" />
             </a>
             
         </div>
@@ -126,7 +130,7 @@
 
    <!-- all courses button -->
     <div class='flex justify-center mb-40'>
-        <button class='w-80 h-10 rounded-full bg-purple-500 text-white font-medium  hover:bg-purple-600' onclick="viewCourse(event)" >View all Courses</button>
+        <button class='w-80 h-10 rounded-full bg-purple-500 text-white font-medium mt-20 hover:bg-purple-600' onclick="viewCourse(event)" >View all Courses</button>
     </div>
 </body>
 </html>

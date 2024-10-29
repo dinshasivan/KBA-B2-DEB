@@ -10,7 +10,7 @@
         async function handleSubmit(event) {
             event.preventDefault();
             
-            const courseName = document.getElementById('s').value.trim();
+            const courseName = document.getElementById('coures_name').value.trim();
             const courseId = document.getElementById('c_id').value.trim();
             const candidateName = document.getElementById('c_name').value.trim();
             const grade = document.getElementById('Grade').value;
@@ -69,7 +69,7 @@
             <p class="font-mono font-bold text-2xl text-center">Issue Certificate</p>
 
             <p class="mt-6 font-mono">Select Course*:</p>
-            <select class="w-80 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="s">
+            <select class="w-80 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="coures_name">
                 <option value="PG Diploma In Blockchain">PG Diploma In Blockchain</option>
                 <option value="PG Diploma In Cyber Security">PG Diploma In Cyber Security</option>
                 <option value="Certified Blockchain Associate">Certified Blockchain Associate</option>

@@ -49,7 +49,7 @@ adminRoute.post('/login', async (req,res)=>{
     }=data;
 
     const result=user.get(UserName);
-    console.log(result);
+    // console.log(result);
     if(!result){
         res.status(403).json({message:"user not exist"})
     }
@@ -72,15 +72,6 @@ adminRoute.post('/login', async (req,res)=>{
             res.status(200).json({message:"login successfully"});
         }
     }
-
-    // if(user.has(UserName)){
-    //     console.log(user.get(UserName));
-    //     res.status(403).json({ message: "User already registered!" });
-    // }
-    // else{
-    //     console.log("User doesn't exist!");
-
-    // }
 })
 
 //addcourse
@@ -252,7 +243,7 @@ adminRoute.post('/updateCourse',authenticate,(req,res)=>{
     // console.log(req.UserRole);
     const role=req.UserRole;
     try{
-        if(role=='aadmin'){
+        if(role=='admin'){
             const data=req.body;
             const update=data.newId;
             // console.log(update);
@@ -274,25 +265,13 @@ adminRoute.post('/updateCourse',authenticate,(req,res)=>{
                 item.Price = newPrice || item.Price
                 course.set(newId,item);
                 console.log("successfully update",course);
-                res.status(200).json({message:"successfully updated"})
+                res.status(200).json({course})
                 
             }
             else{
                 console.log("Not found")
                 res.status(404).json({message:"Not found"})
             }
-            // const {
-            //     CourseId,
-            //     CourseName,
-            //     CourseType,
-            //     Description,
-            //     Price
-            // }=req.body;
-            // course.set(CourseId,{CourseName,CourseType,Description,Price});
-            // res.status(200).json({message:"Successfully update the course!"});
-           
-            // console.log("Successfully updated!");
-            // console.log(course);
             
         }
         else{
@@ -354,7 +333,7 @@ adminRoute.patch('/updateCourse/:id',authenticate,(req,res)=>{
 adminRoute.delete('/deleteCourse/:id',authenticate,(req,res)=>{
     const role=req.UserRole;
     try{
-        if(role=='Admin'){
+        if(role=='admin'){
             const data=req.params.id;
             if(course.has(data)){
                 course.delete(data);
@@ -404,6 +383,10 @@ adminRoute.get('/viewCourse',(req,res)=>{
         console.log(err);
         
     }
+})
+adminRoute.get('/logout',(req,res)=>{
+    res.clearCookie('authToken');
+    res.status(200).json({message: "User Successfully logout"});
 })
 export {adminRoute};
 

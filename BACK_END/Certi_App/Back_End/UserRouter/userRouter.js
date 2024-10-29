@@ -16,7 +16,7 @@ userRoute.post('/issuecertificate',authenticate,(req,res)=>{
     const userRole= req.UserRole;
 
     try{
-        if(userRole === 'Admin'){
+        if(userRole === 'admin'){
             const data = req.body;
             // console.log(data)
 
@@ -116,4 +116,21 @@ userRoute.get('/viewCertificate',(req,res)=>{
         console.log(err);
     }
 })
+
+userRoute.get('/viewUser',authenticate,(req,res)=>{
+    try{
+    const user=req.UserRole;
+    // console.log(user);
+    res.json({user});
+    }
+    catch{
+        res.status(404).json({message:'user not authorized'});
+    }
+})
+
+userRoute.get('/logout',(req,res)=>{
+    res.clearCookie('AuthToken');
+    res.status(200).json({message: "User Successfully logout"});
+})
+   
 export{userRoute};
