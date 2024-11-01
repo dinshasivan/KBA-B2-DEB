@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Course Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<script>
+    window.onload = async () => {
+    console.log('hi');
+    try {
+        const response = await fetch("http://127.0.0.1:3002/viewUser", {
+            method: "GET",
+            credentials: "include",
+        });
+        const data = await response.json();
+        console.log(data);
+        if (data.user === 'admin') {
+            document.getElementById("edit").style.display = 'block';
+            document.getElementById("remove").style.display = 'block';
+        }
+
+        
+
+        const responses = await fetch('http://127.0.0.1:3002/viewCourse',{
+            method: "GET",
+            credentials: "include",
+        })
+
+        console.log(responses.status);
+        const courseId = localStorage.getItem('courseid');
+        // console.log(courseId);
+
+        const data1 = await responses.json();
+        console.log(data1);
+
+        if (responses.status === 200) {
+            data1.forEach(course => {
+            console.log(course);
+            if (course[0] === courseId) {
+                document.getElementById('cname').textContent = course[1].CourseName;
+                document.getElementById('type').textContent = course[1].CourseType
+                document.getElementById('price').textContent = "Rs." + course[1].Price;
+                document.getElementById('description').textContent = course[1].Description;
+            }
+            });
+        } else {
+            alert("data not found!")
+        }    
+    } catch (error) {
+       
+    }
+}
+
+    async function removeCourse(){
+        try{
+            const courseId = localStorage.getItem('courseid');
+
+            if (!courseId) {
+                    alert("No course selected for deletion.");
+                    return;
+                }
+
+                
+                const deleted = confirm("do you want to delete this course?");
+                if (!deleted) return;
+
+              
+                const response = await fetch(`http://127.0.0.1:3002/deleteCourse/${courseId}`, {
+                    method: "DELETE",
+                    credentials: "include"
+                });
+
+                
+                if (response.status === 200) {
+                    // alert("Course deleted successfully.");
+                    window.location.href = "./home.html";
+                } else {
+                    alert("Failed to delete the course. Please try again.");
+                    console.log("Error status:", response.status);
+                }
+        }
+        catch(error){
+
+        }
+    }
+
+    function editCourse(){
+        window.location.href=('./editCourse.html');
+    }
+</script>
+<body class="bg-gray-100 flex items-center  mt-20 ">
+    <div class=" w-2/5 h-4/5 ml-72 bg-gray-200">
+        <div id="courseDetails" >
+            <p id="cname" class="text-2xl text-center text-purple-800 font-bold font-mono mt-10"></p>
+            <p class="text-xl text-purple-800 font-bold font-mono mt-10">Description</p>
+            <p id="description"></p>
+            <p id="type" class="inline-block"></p>
+            <p id="price" class="inline-block pl-96 ml-10"></p>
+            <button class="bg-purple-500 rounded-lg p-2 ml-4">Add to cart</button>
+            
+            <!-- Course details will be displayed here -->
+        </div>
+        <div>
+            <h2 class="text-purple-800 text-xl ">Prerequisites</h2>
+            <ul class="pl-2">
+                <li>&#x2022; Basic understanding of blockchain technology</li>
+                <li> &#x2022;Familiarity with programmming language</li>
+                <li> &#x2022;Internet access</li>
+            </ul>
+            <h2 class="text-purple-800 text-xl ">Features</h2>
+            <ul class="pl-2">
+                <li> &#x2022;40 hours of content</li>
+                <li> &#x2022;Certification of completion</li>
+                <li> &#x2022;Access to community forums</li>
+                <li>  &#x2022;Downloadable resourses</li>
+                <li> &#x2022;24/7 support</li>
+                
+            </ul>
+            <button class="p-4 bg-purple-600 rounded-lg ml-10 mt-4 inline-block" id="edit" style="display: none;" onclick="editCourse()">Edit Course</button>
+            <button class="p-4 bg-red-600 rounded-lg ml-10 mt-4 inline-block" id="remove" style="display: none;" onclick="removeCourse()">Remove Course</button>
+        </div>
+    </div>
+
+    
+</body>
+</html>

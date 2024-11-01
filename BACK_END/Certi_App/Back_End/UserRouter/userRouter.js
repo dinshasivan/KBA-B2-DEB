@@ -2,49 +2,85 @@ import { Router } from "express";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import { authenticate } from "../mdWare/auth.js";
+import mongoose from "mongoose";
 
 
 const userRoute = Router();
 
-const user=new Map();
-const certificates =new Map();
+// const user=new Map();
+// const certificates =new Map();
 const secretKey='hello';
 
+const userSchema = new mongoose.Schema({
 
-userRoute.post('/issuecertificate',authenticate,(req,res)=>{
+    firstName: String,
+    lastName: String,
+    userName: { type: String, unique: true },
+    password: String,
+    userRole: String
+})
+const User = mongoose.model('UserDetails', userSchema);
+
+const CertificatesSchema = new mongoose.Schema({
+    certiId:{type: String, unique:true},
+    courseName:String,
+    candidateName:String,
+    grade:String,
+    issueDate:String
+})
+const Certificates = mongoose.model('certificate_details',CertificatesSchema);
+
+mongoose.connect('mongodb://localhost:27017/CertiApp_DB')
+
+
+userRoute.post('/issuecertificate', authenticate, async (req, res) => {
+    const role = req.UserRole;
+    console.log(role);
     
-    const userRole= req.UserRole;
 
-    try{
-        if(userRole === 'admin'){
-            const data = req.body;
-            // console.log(data)
+    try {
+        if (role === 'Admin') {
+            const body=req.body;
+            const {
+                CertificateId,
+                Course,
+                CName,
+                Grade,
+                IssueDate
+            } = body;
 
-            const {CertificateId,Course,CName,Grade,IssueDate} = data;
-
-            console.log();
-            
-    
-            if(certificates.has(CertificateId)){
-                console.log("Already Issued")
-                res.status(403).json({message:"Already issued!"});
+            // Check if the course already exists 
+            const existingCerti = await Certificates.findOne({certiId:CertificateId})
+            if (existingCerti) {
+                res.status(400).json({ message: "Certificate already present." });
+                console.log("Certificate already exist");
+                
             }
             else{
-                certificates.set(CertificateId,{Course,CName,Grade,IssueDate});
-                console.log(certificates);
-                res.status(201).json({message:"New Certificate!"})
+                // Add the new course
+                const newCerti = new Certificates({
+                    certiId:CertificateId,
+                    courseName:Course,
+                    candidateName:CName,
+                    grade:Grade,
+                    issueDate:IssueDate
+                });
+                await newCerti.save();
+                console.log("Successfully issued!", newCerti);
+                res.status(201).json({ message: "Successfully added course!" });
             }
+        
+        } else {
+            // User is not authorized
+            console.log("Access denied: User is not an admin");
+            res.status(403).json({ message: "Access denied: Admins only" });
         }
-        else{
-            console.log("your not an admin ");
-            
-        }
+    } catch (err) {
+        console.error("Error adding course:", err);
+        // Return a server error response
+        res.status(500).json({ message: "Server error. Please try again later." });
     }
-    catch(error){
-        res.status(500).json(error);
-        console.error(error);
-    }
-})
+});
 userRoute.post('/signup', async (req, res) => {
     try {
         const { FirstName,
@@ -54,15 +90,23 @@ userRoute.post('/signup', async (req, res) => {
             Role } = req.body;
         const newP = await bcrypt.hash(Password, 10);
        
-        if (user.has(UserName)) {
-            console.log("User already registered!")
-            res.status(403).json({ message: "User already registered!" });
+        const existingUser= await User.findOne({userName:UserName})
+        if (existingUser) {
+            console.log("User already exsit!")
+            res.status(403).json({ message: "User already exist!" });
         }
         else {
-            user.set(UserName, { FirstName, LastName, Password: newP, Role });
+            const newUser = new User({
+                firstName:FirstName,
+                lastName:LastName,
+                userName:UserName,
+                password: newP,
+                userRole:Role
+            });
+            await newUser.save();
             console.log("User successfully registered!")
             res.status(201).json({ message: "User Successfully registered!" });
-            console.log(user.get(UserName));
+            console.log(newUser);
         }
     }
     catch (error) {
@@ -71,49 +115,71 @@ userRoute.post('/signup', async (req, res) => {
 })
 
 userRoute.post('/login', async (req,res)=>{
-    const data=req.body;
-    const {
-        UserName,
-        Password
-    }=data;
+    // const data=req.body;
+     const {
+         UserName,
+         Password
+     }=req.body
+ 
+     const result = await User.findOne({userName:UserName})
+     console.log(result);
+     if(!result){
+         res.status(403).json({message:"user not exist"})
+     }
+     else{
+         console.log(Password);
+    
+         const invalid = await bcrypt.compare(Password, result.password);
+         console.log(invalid);
+         if(!invalid){
+             res.status(403).json({message:"Password is incorect"})
+         }
+         else{
+             const token= jwt.sign({UserName:UserName,UserRole:result.userRole},secretKey,{expiresIn:"1h"})
+             res.cookie('AuthToken',token,{
+                 httpOnly:true
+             });
+             console.log(token);
+             res.status(200).json({token});
+             console.log("Login successfull");
+             
+             //  res.status(200).json({message:"login successfully"});
+         }
+     }
+ })
 
-    const result=user.get(UserName);
-    console.log(result);
-    if(!result){
-        res.status(403).json({message:"user not exist"})
-    }
-    else{
-        console.log(Password);
-       
-
-        const invalid = await bcrypt.compare(Password, result.Password);
-        console.log(invalid);
-        if(!invalid){
-            res.status(403).json({message:"Password is incorect"})
-        }
-        else{
-            const token= jwt.sign({UserName:UserName,UserRole:result.Role},secretKey,{expiresIn:"1h"})
-            res.cookie('AuthToken',token,{
-                httpOnly:true
-            });
-            console.log(token);
-            res.status(200).json({token})
-        }
-    }
-
-})
-
-userRoute.get('/viewCertificate',(req,res)=>{
+userRoute.get('/viewCertificate', async(req,res)=>{
     try{
-        if(certificates.size!=0){
-            res.send(Array.from(certificates.entries()))
+        if(Certificates.length == 0){
+
+            res.status(404).json({message:'Not Found'});
+            
         }
         else{
-            res.status(404).json({message:'Not Found'});
+            const data  = await Certificates.find();
+            console.log(data);
+            res.send(data)
+            res.status(201).json({data});
         }
     }
     catch(err){
         console.log(err);
+    }
+})
+
+
+userRoute.get('/search/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const certificateData = await Certificates.findOne({ certiId: id });
+
+        if (certificateData) {
+            res.status(200).json({ message: "Certificate find", data: certificateData });
+        } else {
+            res.status(404).json({ message: "thsi id not found" })
+        }
+    } catch (error) {
+        res.status(500).json({ message: "server error" })
     }
 })
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,49 +8,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <script>
-    window.onload= async ()=>{
-        try{
-            const response=await fetch('http://127.0.0.1:8000/viewCertificate',{
-                method:"GET",
+    window.onload = async () => {
+        try {
+            const certificateId = localStorage.getItem('certiId');
+            const response = await fetch(`http://127.0.0.1:8000/search/${certiId}`, {
+                method: "GET",
                 credentials: "include",
             })
 
             console.log(response.status);
-
-            const certificateId= localStorage.getItem('certiId');
-
+            
             console.log(certificateId);
 
-            const data=await response.json();
+            const data = await response.json();
             console.log(data);
 
-            if(response.status == 200){
+            if (response.status == 200) {
                 data.forEach(element => {
-                    if (element[0] === certificateId) {
-                        console.log(element);
-                        document.getElementById('h1').textContent= element[1].Course;
-                        document.getElementById('para').textContent='This is certified that \t' + element[1].CName;
-                        document.getElementById('parag').textContent='has successfully completed \t' + element[1].Course;
-                        document.getElementById('date').textContent='with grade\t'+ element[1].Grade + ' on \t' + element[1].IssueDate;
-                    
+                    if (element[0].certiId === certificateId) {
+                        console.log(elemen);
+                        document.getElementById('h1').textContent = element[0].courseName;
+                        document.getElementById('para').textContent = 'This is certified that \t' + element[0].candidateName;
+                        document.getElementById('parag').textContent = 'has successfully completed \t' + element[0].courseName;
+                        document.getElementById('date').textContent = 'with grade\t' + element[0].grade + ' on \t' + element[0].issueDate;
+
                     }
-                    else{
+                    else {
                         alert("data not found!")
                     }
 
                 });
             }
-            
-            
-            
+
+
+
         }
-        catch(error){
+        catch (error) {
 
         }
     }
 </script>
+
 <body class="bg-violet-50">
-    
+
     <div class="w-2/4 m-auto bg-violet-100 mt-40 shadow-md">
         <div class="p-16">
             <p class="font-mono font-bold text-2xl text-center text-2xl" id="h1"></p>
@@ -59,6 +60,7 @@
             <p class="font-mono text-center" id="date"></p>
         </div>
     </div>
-   
+
 </body>
+
 </html>

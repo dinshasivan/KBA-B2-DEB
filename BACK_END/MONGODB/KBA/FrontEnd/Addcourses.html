@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        async function addCourse(event){
+            try{
+                const courseName=document.getElementById('course-name').value.trim();
+                const courseId=document.getElementById('course-id').value.trim();
+                const courseType=document.getElementById('course_type').value.trim();
+                const description=document.getElementById('description').value.trim();
+                const price=document.getElementById('price').value;
+
+                console.log(courseName,courseId,courseType,description,price);
+
+                const response = await fetch('http://127.0.0.1:3002/addcourse',{
+                    method:"POST",
+                    credentials:"include",
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        CourseId:courseId,
+                        CourseName:courseName,
+                        CourseType:courseType,
+                        Description:description,
+                        Price:price
+                    })
+                });
+                console.log(response);
+                if(response.status=== 409){
+                    alert("Course already added")
+                }
+                else if(response.status === 201){
+                    alert("Course Successfully added!");
+                    // window.location.href='./home.html';
+                }
+                else{
+                    alert("Error! try after some times!")
+                }
+            }
+            catch(err){
+                console.log(err);
+                
+            } 
+            
+        }
+    </script>
+</head>
+<body>
+    <div class="bg-slate-50 h-16 w-full shadow-xl">
+        <div class="float-left  w-12 ">
+            <img src="images/kbalogo.png" >
+        </div>
+        <div>
+            <nav>
+                <ul class="flex flex-row justify-end space-x-20 p-4 ">
+                    <li><a href="home.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">Home</a></li>
+                    <li><a href="courses.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">Courses</a></li>
+                    
+                    <li><a href="Addcourses.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">Add Course</a></li>
+                    <li><a href="contactus.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">Contact</a></li>
+                    <!-- <li><a href="login.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">LOGIN</a></li>
+                    <li><a href="homepage.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">LOGOUT</a></li> -->
+                    <li><a class=" hover:text-blue-600 font-sans font-bold text-slate-500" href="#" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+</div>
+    <div class="bg-stone-300 w-2/5 p-14 rounded-lg font-sans shadow-xl mt-20 m-auto mb-10">
+        
+        <form class="pl-20">
+            <p class="font-mono font-bold text-2xl text-center text-neutral-900">Add Courses</p>
+
+            <p class="mt-6 font-mono font-bold">Name:</p>
+            <input type="text" id="course-name" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="eg.Certified Blockchain Associate"><br>
+           <p class="mt-6 font-mono font-bold">Course Id:</p>
+            <input type="text" id="course-id" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="eg.1"><br>
+
+            <p class="mt-6 font-mono font-bold">Course Type:</p>
+            <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="course_type">
+                <option value="Hybrid">Hybrid</option>
+                <option value="Online">Online</option>
+                <option value="Offline">Offline</option>
+            </select><br>
+
+            <p class="mt-6 font-mono font-bold">Description:</p>
+            <textarea id="description" class="w-4/5 h-32 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="small description on the course"></textarea><br>
+
+            <p class="mt-6 font-mono font-bold">Price:</p>
+            <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="price">
+                <option value="15000">15000</option>
+                <option value="20000">20000</option>
+                <option value="25000">25000</option>
+            </select><br>
+
+            <button class="mt-6 bg-gray-900 ml-24 rounded-lg min-w-64 px-3 py-2 text-white " onclick="addCourse(event)">Add Course</button><br>
+        </form>
+    
+    </div>
+</body>
+</html>

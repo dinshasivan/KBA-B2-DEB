@@ -113,40 +113,6 @@ adminRoute.post('/addcourse', authenticate, (req, res) => {
     }
 });
 
-// adminRoute.post('/getCourse',authenticate,(req,res)=>{
-   
-//     try{
-//         if(req.UserName){
-//             const data=req.body;
-//             const search=data.Search;
-//             if(search){
-//                 const searchResult=[];
-//                 for(const[id,item] of course){
-//                     if(id.includes(search) || item.CourseName.includes(search)||item.CourseType.includes(search)){
-//                         searchResult.push(id,item.CourseName,item.CourseType,item.Price,item.Description);
-//                         console.log('Course Details',searchResult);
-//                         res.status(200).json({message:"seach item found"})
-//                         break;
-//                     }
-//                     else{
-//                         console.log("Course not available");
-//                         res.status(404).json({message:"Course not availbale"})
-//                     }
-//                 }
-//             }
-//             else{
-//                 console.log("please login!");
-                
-//             }
-           
-//         }
-//     }
-//     catch(err){
-//         console.log(err)
-//     }
-
-//     // console.log(course);
-// })
 
 adminRoute.get('/getCourse/:Id',authenticate,(req,res)=>{
     const search=req.params.Id;
