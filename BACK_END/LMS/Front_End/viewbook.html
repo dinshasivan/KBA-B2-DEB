@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Books</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<script>
+    // Fetch and display books
+    async function getBooks() {
+        try {
+            const response = await fetch('http://127.0.0.1:3000/books');
+            if (!response.ok) {
+                throw new Error('Failed to fetch books');
+            }
+
+            const books = await response.json();
+            const booksContainer = document.getElementById('books-container');
+
+            books.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.classList.add('p-4', 'bg-white', 'border', 'rounded-lg', 'shadow-lg', 'm-4');
+                const imageUrl = `http://127.0.0.1:3000${book.image}`;
+            
+
+                bookCard.innerHTML = `
+                    <img src="${imageUrl}" alt="${book.bookName}" class="w-64 h-64 object-cover rounded-lg mb-4">
+                    <p class="text-center text-gray-500">${book.category}</p>
+                    <h3 class="font-bold text-xl text-center">${book.bookName}</h3>
+                    <p class="text-center"> ${book.autherName}</p>
+                    <p class="text-center"> ₹${book.price}</p>
+                    <button class="bg-blue-300 p-2 rounded-lg ml-32 mt-2">Add to cart</button>
+                    
+                `;
+                booksContainer.appendChild(bookCard);
+            });
+        } catch (error) {
+            console.error(error);
+            alert('Error fetching books');
+        }
+    }
+
+    // Call getBooks when page loads
+    window.onload = getBooks;
+</script>
+
+<body>
+    <div class="h-16 w-full">
+        <div class="shadow-xl">
+            <nav>
+                <ul class="flex flex-row justify-start space-x-20 p-4">
+                    <li><img src="images/logo.png" class="w-16"></li>
+                    <li><a href="home.html" class="hover:text-blue-600 font-sans font-bold text-slate-500 pl-96">HOME</a></li>
+                    <!-- <li><a href="addbook.html" class="hover:text-blue-600 font-sans font-bold text-slate-500">ADD BOOK</a></li> -->
+                    <li><a href="viewbook.html" class="hover:text-blue-600 font-sans font-bold text-slate-500">VIEW BOOK</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+        <div class="grid grid-cols-4 gap-4 p-10" id="books-container">
+            <!-- Books will be displayed here -->
+             
+        </div>
+   
+</body>
+
+</html>

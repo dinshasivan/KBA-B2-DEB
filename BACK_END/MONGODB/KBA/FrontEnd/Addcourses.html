@@ -40,7 +40,7 @@
                     // window.location.href='./home.html';
                 }
                 else{
-                    alert("Error! try after some times!")
+                    alert("Empty field! All fields are required")
                 }
             }
             catch(err){
@@ -77,22 +77,22 @@
             <p class="font-mono font-bold text-2xl text-center text-neutral-900">Add Courses</p>
 
             <p class="mt-6 font-mono font-bold">Name:</p>
-            <input type="text" id="course-name" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="eg.Certified Blockchain Associate"><br>
+            <input type="text" id="course-name" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="eg.Certified Blockchain Associate" required><br>
            <p class="mt-6 font-mono font-bold">Course Id:</p>
-            <input type="text" id="course-id" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="eg.1"><br>
+            <input type="text" id="course-id" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="eg.1" required><br>
 
             <p class="mt-6 font-mono font-bold">Course Type:</p>
-            <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="course_type">
+            <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="course_type" required>
                 <option value="Hybrid">Hybrid</option>
                 <option value="Online">Online</option>
                 <option value="Offline">Offline</option>
             </select><br>
 
             <p class="mt-6 font-mono font-bold">Description:</p>
-            <textarea id="description" class="w-4/5 h-32 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="small description on the course"></textarea><br>
+            <textarea id="description" class="w-4/5 h-32 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="small description on the course" required></textarea><br>
 
             <p class="mt-6 font-mono font-bold">Price:</p>
-            <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="price">
+            <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="price" required>
                 <option value="15000">15000</option>
                 <option value="20000">20000</option>
                 <option value="25000">25000</option>

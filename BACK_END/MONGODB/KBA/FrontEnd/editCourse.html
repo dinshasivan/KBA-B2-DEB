@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,24 +19,26 @@
             console.log(response.status);
 
             const courseId = await localStorage.getItem('courseid');
-            console.log(courseId)
+            // console.log(courseId)
 
             const data = await response.json();
-            console.log(data)
+            // console.log(data.viewAll)
+            // console.log(data);
+
+            const value = data.viewAll;
 
             if (response.status === 200) {
-                data.forEach(course => {
+                value.forEach(course => {
                     // console.log(course);
-                    if (course[0] === courseId) {
-                        const courseName = document.getElementById('course-name');
-                        courseName.value = course[1].CourseName;
-                        const course_id=document.getElementById('course-id').value=course[0];
-                        const courseType = document.getElementById('type');
-                        courseType.value = course[1].CourseType;
-                        const description = document.getElementById('description');
-                        description.value = course[1].Description;
-                        const price = document.getElementById('price');
-                        price.value = course[1].Price;
+
+                    console.log(course);
+
+                    if (course.courseId === courseId) {
+                        document.getElementById('course-name').value = course.courseName;
+                        document.getElementById('course-id').value = course.courseId;
+                        document.getElementById('type').option = course.courseType
+                        document.getElementById('description').value = course.description;
+                        document.getElementById('price').option = course.coursePrice;
                     }
                 });
             } else {
@@ -47,7 +50,8 @@
     }
 
 
-    async function updateCourse() {
+    async function updateCourse(event) {
+        event.preventDefault();
 
         try {
             const course_name = document.getElementById('course-name').value;
@@ -58,75 +62,73 @@
 
             const courseId = await localStorage.getItem('courseid');
 
-            console.log(courseId)
+            // console.log(courseId, course_name, type, description, price)
 
             if (!courseId) {
                 alert("No course selected for updating.");
                 return;
-            }
-
-            const response = await fetch(`http://127.0.0.1:3002/updateCourse/${courseId}`, {
-                method: 'PUT',
-                credentials:"include",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    newName: course_name,
-                    newType: type,
-                    newDescription: description,
-                    newPrice: price                    
-                })
-            });
-            console.log(response);
-
-            if (response.status == 200) {
-                alert("Course updated successfully.");
-                window.location.href = "./viewCourse.html";
             } else {
-                alert("Failed to update the course. Please try again.");
-                console.log("Error status:", response.status);
-            }
+                const response = await fetch(`http://127.0.0.1:3002/updateCourse/${courseId}`, {
+                    method: 'PATCH',
+                    credentials: "include",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        CourseId: courseId,
+                        CourseName: course_name,
+                        CourseType: type,
+                        Description: description,
+                        Price: price
+                    })
+                });
 
+                console.log(response.status);
+                
+                if (response == 201) {
+                    alert('Update successfull');
+                    // window.location.href = './viewCourse.html'
+                }
+                else{
+                    alert('Update successfull');
+                    window.location.href = './viewCourse.html'
+                }
+            }
 
         } catch (error) {
-            console.error("An error occurred:", error);
             alert("An unexpected error occurred. Please try again.");
         }
-
-
     }
 
-
-
 </script>
+
 <body>
     <div class="bg-slate-50 h-16 w-full shadow-xl">
         <div class="float-left  w-12 ">
-            <img src="images/kbalogo.png" >
+            <img src="images/kbalogo.png">
         </div>
         <div>
             <nav>
                 <ul class="flex flex-row justify-end space-x-20 p-4 ">
                     <li><a href="home.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">HOME</a></li>
-                    <li><a href="courses.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">COURSES</a></li>
-                    
-                   
+                    <li><a href="courses.html"class=" hover:text-blue-600 font-sans font-bold text-slate-500">COURSES</a></li>
                     <li><a href="contactus.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">CONTACT US</a></li>
-                    
+
                 </ul>
             </nav>
         </div>
-</div>
+    </div>
     <div class="bg-stone-300 w-2/5 p-14 rounded-lg font-sans shadow-xl mt-20 m-auto mb-10">
-        
+
         <form class="pl-20">
             <p class="font-mono font-bold text-2xl text-center text-neutral-900">Update Course</p>
 
             <p class="mt-6 font-mono font-bold">Name:</p>
-            <input type="text" id="course-name" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" ><br>
-           <p class="mt-6 font-mono font-bold">Course Id:</p>
-            <input type="text" id="course-id" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" ><br>
+            <input type="text" id="course-name"
+                class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4"><br>
+            <p class="mt-6 font-mono font-bold">Course Id:</p>
+            <input type="text" id="course-id"
+                class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4"><br>
 
             <p class="mt-6 font-mono font-bold">Course Type:</p>
             <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4 " id="type">
@@ -136,7 +138,8 @@
             </select><br>
 
             <p class="mt-6 font-mono font-bold">Description:</p>
-            <textarea id="description" class="w-4/5 h-32 rounded-lg border border-stone-300 ring-2 hover:ring-4" placeholder="small description on the course"></textarea><br>
+            <textarea id="description" class="w-4/5 h-32 rounded-lg border border-stone-300 ring-2 hover:ring-4"
+                placeholder="small description on the course"></textarea><br>
 
             <p class="mt-6 font-mono font-bold">Price:</p>
             <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="price">
@@ -145,9 +148,11 @@
                 <option value="25000">25000</option>
             </select><br>
 
-            <button class="mt-6 bg-gray-900 ml-24 rounded-lg min-w-64 px-3 py-2 text-white " onclick="updateCourse()">Update Course<br>
+            <button class="mt-6 bg-gray-900 ml-24 rounded-lg min-w-64 px-3 py-2 text-white "
+                onclick="updateCourse(event)">Update Course<br>
         </form>
-    
+
     </div>
 </body>
+
 </html>

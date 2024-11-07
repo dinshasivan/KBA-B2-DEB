@@ -15,12 +15,8 @@ const authenticate=(req,res,next)=>{
 
         if(name=='authToken'){
             const verified= jwt.verify(token,secretKey);
-            // console.log(verified);
-            // console.log(verified.UserName);
-            // console.log(verified.UserRole);
             req.UserName=verified.UserName;
             req.UserRole=verified.UserRole;
-            
             break;
         }
     }

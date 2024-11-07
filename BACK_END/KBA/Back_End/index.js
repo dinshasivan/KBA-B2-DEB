@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser';
 dotenv.config();
 const app=express();
 app.use(cors({
-    origin:'http://127.0.0.1:5501',//spesify the port 'http://127.0.0.1:5000'
+    origin:'http://127.0.0.1:5500',//spesify the port 'http://127.0.0.1:5000'
     credentials:true
 }));
 app.use(json());

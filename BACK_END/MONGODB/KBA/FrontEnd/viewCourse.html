@@ -15,8 +15,8 @@
             credentials: "include",
         });
         const data = await response.json();
-        console.log(data);
-        if (data.user === 'admin') {
+        console.log(data.user);
+        if (data.user === 'Admin') {
             document.getElementById("edit").style.display = 'block';
             document.getElementById("remove").style.display = 'block';
         }
@@ -30,19 +30,22 @@
 
         console.log(responses.status);
         const courseId = localStorage.getItem('courseid');
-        // console.log(courseId);
+        console.log(courseId);
 
         const data1 = await responses.json();
-        console.log(data1);
+        // console.log(data1.viewAll);
+
+        const array = data1.viewAll;
+       console.log(array);
 
         if (responses.status === 200) {
-            data1.forEach(course => {
+            array.forEach(course => {
             console.log(course);
-            if (course[0] === courseId) {
-                document.getElementById('cname').textContent = course[1].CourseName;
-                document.getElementById('type').textContent = course[1].CourseType
-                document.getElementById('price').textContent = "Rs." + course[1].Price;
-                document.getElementById('description').textContent = course[1].Description;
+            if (course.courseId === courseId) {
+                document.getElementById('cname').textContent = course.courseName;
+                document.getElementById('type').textContent = course.courseType
+                document.getElementById('price').textContent = "Rs." + course.coursePrice;
+                document.getElementById('description').textContent = course.description;
             }
             });
         } else {

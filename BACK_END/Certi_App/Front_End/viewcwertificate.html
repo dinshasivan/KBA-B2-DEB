@@ -11,53 +11,58 @@
     window.onload = async () => {
         try {
             const certificateId = localStorage.getItem('certiId');
-            const response = await fetch(`http://127.0.0.1:8000/search/${certiId}`, {
+            console.log(certificateId)
+            const response = await fetch(`http://127.0.0.1:8000/search/${certificateId}`, {
                 method: "GET",
                 credentials: "include",
             })
 
             console.log(response.status);
-            
-            console.log(certificateId);
-
             const data = await response.json();
-            console.log(data);
 
-            if (response.status == 200) {
-                data.forEach(element => {
-                    if (element[0].certiId === certificateId) {
-                        console.log(elemen);
-                        document.getElementById('h1').textContent = element[0].courseName;
-                        document.getElementById('para').textContent = 'This is certified that \t' + element[0].candidateName;
-                        document.getElementById('parag').textContent = 'has successfully completed \t' + element[0].courseName;
-                        document.getElementById('date').textContent = 'with grade\t' + element[0].grade + ' on \t' + element[0].issueDate;
+            console.log(data.data)
 
-                    }
-                    else {
-                        alert("data not found!")
-                    }
+            if (data.data) {
 
-                });
+                document.getElementById('candidate').textContent = data.data.candidateName;
+                document.getElementById('subject').textContent = data.data.courseName;
+                document.getElementById('date').textContent = data.data.issueDate;
+                document.getElementById('grade').textContent = data.data.grade;
+                document.getElementById('cid').textContent = data.data.certiId;
+            }else{
+                alert('Data not Found');
             }
-
 
 
         }
         catch (error) {
-
+            console.error(error);
+            
         }
     }
 </script>
 
 <body class="bg-violet-50">
 
-    <div class="w-2/4 m-auto bg-violet-100 mt-40 shadow-md">
-        <div class="p-16">
-            <p class="font-mono font-bold text-2xl text-center text-2xl" id="h1"></p>
-            <img src="online-course.png" class="w-1/5  m-auto pt-12">
-            <p class="font-mono text-center pt-12" id="para"> </p>
-            <p class="font-mono text-center" id="parag"></p>
-            <p class="font-mono text-center" id="date"></p>
+    <div class="flex justify-center item-center ml-[450px] mt-[150px] w-[600px] h-auto shadow-2xl py-3 ">
+
+        <div class="text-center">
+            <h2 class="text-xl font-bold">Kerala BlockChain Academy</h2>
+            <div class="text-center mt-4 mb-4 pl-32">
+                <img src="online-course.png" alt="" class=" w-32 h-32 ">
+            </div>
+
+            <ul style="list-style: none;">
+                <li>This to Certify that <b id="candidate"></b></li>
+                <li>has Successfully Completed <b id="subject"></b></li>
+                <li>with <b id="grade"></b> on <b id="date"></b></li>
+                </p>
+            </ul>
+
+        </div>
+
+        <div class="float-left">
+            <p class="text-gray-300">CID : <b id="cid"></b></p>
         </div>
     </div>
 
