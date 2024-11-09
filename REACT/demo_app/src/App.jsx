@@ -1,27 +1,20 @@
 import React from 'react'
+import Card from './card';
+import Demo from './demo';
+
 
 const App = () => {
-  const name='Dinsha';
-  const x=10;
-  const y=20;
-
-  const names=['sree','anu','sandhya','pow'];
-
-  const loggedIn=false;
 
   return (
     <>
-     <div className='text-5xl font-bold font-mono text-center m-auto mt-20'>Dinsha Sivan </div>
-     <p>Hello, {name}</p>
-     <p>The sum of {x} and {y} is {x+y} </p>
-     <ul>
-      {
-        names.map((name,index)=>(
-          <li key={index}>{name}</li>
-        ))
-      }
-     </ul>
-     {loggedIn ? <h1> hello member</h1> : <h1>hello guest</h1>}
+      <Demo/>
+     <div className='flex'>
+        <Card customClasses="bg-yellow-400" />
+        <Card customClasses="bg-green-200" />
+        <Card customClasses="bg-red-200" />
+     </div>
+   
+     
     </>
   )
 }

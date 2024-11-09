@@ -1,11 +1,11 @@
 
-import express from 'express'
+// import express from 'express'
 import { Router } from "express";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import { authenticate } from "../MiddleWare/authenticate.js";
 import mongoose from "mongoose";
-// import multer from "multer";
+
 import path from "path";
 import formidable from 'formidable'
 import Books from "../models/model.js";
@@ -17,6 +17,8 @@ const adminRoute = Router();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+
 // adminRoute.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //schema for storing user details
@@ -111,8 +113,8 @@ adminRoute.post('/login', async (req,res)=>{
  
  // Route for adding books
  adminRoute.post('/addBooks', authenticate, (req, res) => {
-    // Ensure only 'Admin' users can add books
-    const user = req.UserRole; // Assuming you have set user role in the request
+   
+    const user = req.UserRole; 
     if (user !== 'Admin') {
         return res.status(403).json({ message: 'Access denied. Admins only.' });
     }
@@ -120,9 +122,9 @@ adminRoute.post('/login', async (req,res)=>{
     // Use Formidable to handle file upload and form parsing
     const form = formidable({
         uploadDir: uploadDir, // Set the directory for file uploads
-        keepExtensions: true, // Keep the file extension of the uploaded file
-        allowEmptyFiles: false, // Disallow empty files
-        multiples: false, // Only one file at a time
+        keepExtensions: true, 
+        allowEmptyFiles: false, 
+        multiples: false, 
     });
 
     form.parse(req, async (err, fields, files) => {
@@ -131,7 +133,7 @@ adminRoute.post('/login', async (req,res)=>{
         }
 
         try {
-            // Extract book details from the form, ensuring no array values are passed
+           
             const { BookId, BookName, AutherName, Category, Description, Price } = fields;
 
             // Convert the values to the correct types (strings or numbers)
