@@ -93,5 +93,4 @@ function calculateScore(){
 }
 
 window.onload =function() {
-    
 };
