@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<script>
+    async function addbook(event) {
+        event.preventDefault();
+
+        try {
+            const bookid = document.getElementById('bookid').value.trim();
+            const bookname = document.getElementById('bookname').value.trim();
+            const authorname = document.getElementById('author').value.trim();
+            const bookcategory = document.getElementById('category').value.trim();
+            const bookprice = document.getElementById('price').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const image = document.getElementById('image').files[0];
+
+            // Prepare form data for sending
+            const formData = new FormData();
+            formData.append('BookId', bookid);
+            formData.append('BookName', bookname);
+            formData.append('AuthorName', authorname);
+            formData.append('Category', bookcategory);
+            formData.append('Price', bookprice);
+            formData.append('Description', description);
+            formData.append('image', image);
+
+            // Send data to backend
+            const response = await fetch('http://127.0.0.1:3001/addBook', {
+                method: "POST",
+                credentials: "include",
+                body: formData // No need to set Content-Type header with FormData
+            });
+
+            if (!response.ok) throw new Error("Failed to add book");
+            alert("add successfull")
+            console.log("Book added successfully");
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+</script>
+<body>
+    <div class=" h-16 w-full ">
+        <div class="shadow-xl">
+            <nav>
+                <ul class="flex flex-row justify-start space-x-20 p-4 ">
+                    <li><img src="images/logo.png" class="w-16 "></li>
+                    <li><a href="home.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500 pl-96">HOME</a></li>
+                    <li><a href="signup.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">SIGN UP</a></li>
+                    <li><a href="login.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">LOGIN</a></li>
+                    <li><a href="addbook.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">ADD BOOK</a></li>
+                    <li><a href="viewbook.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">VIEW BOOK</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2">
+        <div class="">
+            <img src="images/login.jpg " class="w-4/5 pt-96">
+        </div>
+        <div class="bg-stone-300 w-4/5 p-14 rounded-lg font-sans shadow-xl mt-20 m-auto mb-10 ">
+            <form class="pl-20">
+                <p class="font-mono font-bold text-2xl text-center text-neutral-900">ADD BOOK</p>
+                <p class="mt-6 font-mono font-bold">Book Id:</p>
+                <input type="text" id="bookid" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4"><br>
+                <p class="mt-6 font-mono font-bold">Book Title:</p>
+                <input type="text" id="bookname" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4"><br>
+                <p class="mt-6 font-mono font-bold">Author Name:</p>
+                <input type="text" id="author" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4"><br>
+                <p class="mt-6 font-mono font-bold">Book Type:</p>
+                <select class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" id="category">
+                    <option value="Novel">Novel</option>
+                    <option value="Bibliography">Bibliography</option>
+                    <option value="Fiction">Fiction</option>
+                </select><br>
+                <p class="mt-6 font-mono font-bold">Cover Page:</p>
+                <input type="file" class="pl-2 pr-2" id="image">
+                <p class="mt-6 font-mono font-bold">Description:</p>
+                <textarea id="description" class="w-4/5 h-32 rounded-lg border border-stone-300 ring-2 hover:ring-4"></textarea><br>
+                <p class="mt-6 font-mono font-bold">Price:</p>
+                <input type="number" id="price" class="w-4/5 h-12 rounded-lg border border-stone-300 ring-2 hover:ring-4" required><br>
+                <button class="mt-6 bg-gray-900 ml-24 rounded-lg min-w-64 px-3 py-2 text-white" onclick="addbook(event)">Add Book</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

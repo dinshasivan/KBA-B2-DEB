@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - View Books</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class=" h-16 w-full ">
+        <div class="shadow-xl">
+            <nav>
+                <ul class="flex flex-row justify-start space-x-20 p-4 ">
+                    <li><img src="images/logo.png" class="w-16 "></li>
+                    <li><a href="home.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500 pl-96">HOME</a></li>
+                    
+                    <li><a href="viewbook.html" class=" hover:text-blue-600 font-sans font-bold text-slate-500">VIEW BOOK</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <div class="container mx-auto p-8">
+        
+        <div id="book-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Book items will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script>
+        async function fetchBooks() {
+            try {
+                const response = await fetch('http://127.0.0.1:3001/viewBooks');
+                const data = await response.json();
+
+                if (data.books && data.books.length > 0) {
+                    const bookList = document.getElementById('book-list');
+                    data.books.forEach(book => {
+                        const bookItem = document.createElement('div');
+                        bookItem.classList.add('bg-white', 'p-6', 'rounded-lg', 'shadow-md', 'hover:shadow-lg', 'transition');
+                        const imageUrl = `http://127.0.0.1:3001/getImage/${book.image}`;
+
+                        bookItem.innerHTML = `
+                            <img src="${imageUrl}" alt="${book.bookName}"  class="w-64 h-64 object-cover rounded-lg mb-4">
+                            <h3 class="font-bold text-xl text-center">${book.bookName}</h3>
+                            <p class="text-center text-gray-500> ${book.category}</p>
+                            <p class="text-center> ${book.authorName}</p>
+                            <p class="text-center"> ₹${book.price}</p>
+                            <button class="bg-blue-300 p-2 rounded-lg ml-32 mt-2">Add to cart</button>
+                
+                        `;
+                        
+                        bookList.appendChild(bookItem);
+                    });
+                } else {
+                    document.getElementById('book-list').innerHTML = '<p class="text-gray-600">No books available.</p>';
+                }
+            } catch (error) {
+                console.error("Error fetching books:", error);
+                document.getElementById('book-list').innerHTML = '<p class="text-red-600">Failed to load books. Please try again later.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchBooks);
+    </script>
+
+</body>
+</html>
