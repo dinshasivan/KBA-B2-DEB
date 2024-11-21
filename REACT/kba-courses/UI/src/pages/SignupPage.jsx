@@ -26,7 +26,7 @@ const SignupPage = () => {
         }
     }
 
-    const submitForm = (e) => {
+    const submithtmlForm = (e) => {
         e.preventDefault();
         const userDetails = {
             userName,
@@ -42,10 +42,10 @@ const SignupPage = () => {
         <div className="bg-purple-100 flex items-center justify-center min-h-screen">
             <div className="bg-white p-10 rounded-lg shadow-lg max-w-sm w-full">
                 <h2 className="text-3xl font-bold text-purple-700 mb-4 text-center">Sign Up</h2>
-                <form onSubmit={submitForm}> 
+                <form onSubmit={submithtmlForm}> 
 
                     <div className="mb-4">
-                        <label for="name" className="block text-gray-700 font-bold mb-2">Name:</label>
+                        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name:</label>
                         <input
                             type="text"
                             id="name"
@@ -57,7 +57,7 @@ const SignupPage = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label for="email" className="block text-gray-700 font-bold mb-2">Email:</label>
+                        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email:</label>
                         <input
                             type="email"
                             id="email"
@@ -69,7 +69,7 @@ const SignupPage = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label for="password" className="block text-gray-700 font-bold mb-2">Password:</label>
+                        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password:</label>
                         <input
                             type="password"
                             id="password"
@@ -81,7 +81,7 @@ const SignupPage = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label for="userType" className="block text-gray-700 font-bold mb-2">User Type:</label>
+                        <label htmlFor="userType" className="block text-gray-700 font-bold mb-2">User Type:</label>
                         <select
                             id="userType"
                             name="userType"

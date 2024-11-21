@@ -28,9 +28,12 @@ router.post("/register", async (req, res) => {
 // User login
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
-
-    console.log(email, password);
+    const loginDetails = req.body;
+    const email = loginDetails.email;
+    const password = loginDetails.password;
+    // console.log("fgbcv",loginDetails);
+    // console.log(logindata.email, logindata.password);
+    
     const user = await User.findOne({ email  });
     console.log(user, "user");
     if (!user) {

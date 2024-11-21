@@ -16,15 +16,15 @@ const LoginPage = () => {
         };
 
         const res = await fetch('/api/login',{
-            method:"POST",
-            headers:{
-                'Contet-Type':'application/json',
-            },
-            body:JSON.stringify(loginDetails),
-            credentials:"include",
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(loginDetails),
+            // credentials:"include",
         });
         console.log(loginDetails);
-        console.log(res.ok);
+        console.log(res);
         
         if(res.ok){
             const data = await res.json();
