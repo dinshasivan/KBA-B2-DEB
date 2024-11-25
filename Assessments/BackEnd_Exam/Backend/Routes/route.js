@@ -69,19 +69,42 @@ route.get('/getBooking', async (req, res)=>{
     }
 })
 
-route.get('/getBooking/:checkinDay',async (req,res)=>{
-    try{
-        const CheckinDay = req.params.checkinDay;
-        const BookingDetails = await Booking.find({ checkinDay: CheckinDay });
-        res.json({message:"Booking details in a perticular day:",BookingDetails});
-        console.log(BookingDetails);
+// route.get('/getBooking/:checkinDay',async (req,res)=>{
+//     try{
+//         const CheckinDay = req.params.checkinDay;
+//         const BookingDetails = await Booking.find({ checkinDay: CheckinDay });
+//         res.json({message:"Booking details in a perticular day:",BookingDetails});
+//         console.log(BookingDetails);
         
-    }
-    catch(error){
-        console.log(error);
+//     }
+//     catch(error){
+//         console.log(error);
         
+//     }
+// })
+
+route.get('/getBooking/:date', async (req, res) => {
+    try {
+        const { date } = req.params; // Get the date from the query parameters
+        if (date) {
+            const bookings = await Booking.find({
+                $or: [
+                    { checkinDate: date },
+                    { checkoutDate: date }
+                ]
+            });
+            res.status(200).json(bookings);
+        } else {
+            
+            const bookings = await Booking.find({});
+            res.status(200).json(bookings);
+        }
+    } catch (err) {
+        console.error('Error fetching bookings:', err);
+        res.status(500).json({ message: 'Failed to retrieve bookings' });
     }
-})
+});
+
 
 //delete booking
 route.delete('/deleteBooking/:bookingId', async(req, res)=>{

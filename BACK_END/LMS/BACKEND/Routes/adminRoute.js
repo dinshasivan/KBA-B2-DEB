@@ -183,6 +183,48 @@ adminRoute.get('/viewBooks', async (req,res)=>{
     }
 });
 
+adminRoute.delete('/deleteBook/:bookId', async (req, res)=>{
+    try{
+        const bookId = req.params.bookId;
+        const deleteBook = await Book.findOneAndDelete(bookId);
+
+        if(deleteBook){
+            res.status(200).json({message:"Book deleted successfull",deleteBook});
+            console.log("Book deleted Successfull");
+            
+        }
+        else{
+            res.status(400).json({message:"Book not found"})
+        }
+    }
+    catch(error){
+        console.error(error);
+        
+    }
+})
+
+adminRoute.put('/updateBook/:bookId', async(req, res)=>{
+    try{
+        const bookid = req.params.bookId;
+        const {BookId, BookName, AuthorName, Category, Price}=req.body;
+
+        const updateBook = await Book.findOneAndUpdate(bookid);
+
+        if(updateBook){
+            res.status(200).json({message:"Book Details updated successfull",updateBook});
+            console.log("Book Details updated successful",updateBook);
+            
+        }else{
+            res.status(400).json({message:"book not found"})
+        }
+    }
+    catch(error){
+        console.error(error);
+        
+    }
+})
+
+
 adminRoute.get('/viewUser',authenticate,(req,res)=>{
     try{
     const user=req.UserRole;
